@@ -13,12 +13,12 @@ import {
 } from "@mui/material";
 import { EMAIL_VALIDATION } from "../validation/validation";
 import AuthHeader from "../shared/AuthHeader";
-import { useContext, useEffect } from "react";
-import { AuthContext } from "../context/AuthContext";
+import {useEffect } from "react";
+// import { AuthContext } from "../context/AuthContext";
 
 export default function ForgetPassword() {
   const navigate = useNavigate();
- const authContext = useContext(AuthContext);
+//  const authContext = useContext(AuthContext);
 
   const {
     register,
@@ -37,16 +37,18 @@ export default function ForgetPassword() {
         response?.data?.message || "Check your email to forget password"
       );
 
+      navigate('/reset-pass', {state: {email: data.email}});
+
   
     } catch (error: any) {
       toast.error(error.response?.data?.message || "Something went wrong");
     }
   };
 useEffect(() => {
-  if (authContext?.userData) {
-    navigate("/login");
-  }
-}, [authContext?.userData]);
+  // if (authContext?.userData) {
+  //   navigate("/login");
+  // }
+});
 
   return (
     <>

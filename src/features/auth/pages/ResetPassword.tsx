@@ -11,15 +11,18 @@ import type { ResetPayload } from "../type";
 import { EMAIL_VALIDATION, PASSWORD_VALIDATION, REQUIRED_VALIDATION } from "../validation/validation";
 import { axiosInstance } from "../../../services/httpClient";
 import { AUTH_URLS } from "../../../config/api.endPoint";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
+import CircularProgress from '@mui/material/CircularProgress';
 
 export default function ResetPassword() {
   let navigate = useNavigate();
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(false);
+  const location =useLocation();
+  let passedEmail = location.state?.email || "";
 
-  const {register, handleSubmit,formState:{errors},watch} = useForm<ResetPayload>();
+  const {register, handleSubmit,formState:{errors, isSubmitting},watch} = useForm<ResetPayload>();
 
   const passwordValue = watch("password");
 
@@ -50,7 +53,7 @@ export default function ResetPassword() {
 
       <Stack spacing={2} sx={{width:"60%"}}>
 
-      <TextField type="email"  id="email" label="Email" variant="outlined" 
+      <TextField type="email"  id="email" label="Email" variant="outlined" disabled defaultValue={passedEmail} 
         sx={{
         "& .MuiOutlinedInput-root": {
           backgroundColor: "#F5F6F8",
@@ -76,6 +79,8 @@ export default function ResetPassword() {
           helperText={errors.email?.message}
               
       />
+      {/* hidden input مهم عشان القيمة تتبعت في handleSubmit */}
+      <input type="hidden" {...register("email")} value={passedEmail} />
 
       <TextField type="text"  id="otp" label="OTP" variant="outlined" 
         sx={{
@@ -193,8 +198,14 @@ export default function ResetPassword() {
       </Stack>
 
       <Stack my={4} sx={{width:"60%"}}>
-        <Button type="submit" variant="contained" color="primary" sx={{textTransform:"capitalize",paddingY:"10px",fontSize:"15px"}}>
-          Reset
+        <Button disabled={isSubmitting} type="submit" variant="contained" color="primary" sx={{textTransform:"capitalize",paddingY:"10px",fontSize:"15px"}}>
+          {isSubmitting ? (
+            <>
+             <CircularProgress size="20px" sx={{marginRight:"20px"}}/> Reset
+            </>
+
+          )
+          : "Reset"}
         </Button>
       </Stack>
     </Box>
