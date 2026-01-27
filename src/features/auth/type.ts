@@ -73,3 +73,8 @@ export interface ForgetPayload{
 export interface UserRouteProps {
   children: ReactNode;
 }
+export interface changePayload{
+   oldPassword:string;
+   newPassworf:string;
+   confirmPassword:string;
+}

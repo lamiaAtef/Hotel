@@ -59,7 +59,7 @@ const routes = createBrowserRouter(
           {path:"ads", element:<Ads/>},
           {path:"facilites", element:<Facilities/>},
           {path:"rooms", element:<Rooms/>},
-          {path:"room_data", element:<RoomData/>},
+          {path:"roomData", element:<RoomData/>},
           {path:"users", element:<Users/>},
           {path:"booking", element:<Booking/>}
          
