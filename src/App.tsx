@@ -16,6 +16,7 @@ import AdminDashBoard from "./features/admin/pages/AdminDashBoard";
 import UserDashBoard from "./features/user/pages/UserDashBoard";
 import AuthContextProvider from "./features/auth/context/AuthContext";
 import { ToastContainer} from 'react-toastify';
+import RoomFacilities from "./features/admin/pages/RoomFacilities";
 
 
 
@@ -44,6 +45,7 @@ const routes = createBrowserRouter(
         children:[
           {index:true, element:<AdminDashBoard/>},
           {path:"home", element:<AdminDashBoard/>},
+          {path:"room-facility", element:<RoomFacilities/>}
          
          
         ]

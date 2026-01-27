@@ -3,3 +3,12 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+:root{
+  --bgColor: #203FC7;
+}
+
+.btnAdmin{
+  color:#fff;
+  background-color: var(--bgColor);
+}

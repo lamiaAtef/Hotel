@@ -21,3 +21,11 @@ export const USER_URLS = {
    
 }
 
+export const ROOM_FACILITIES_URLS={
+    GET_ALL_FACILITIES:`/api/v0/admin/room-facilities`,
+    ADD_NEW_FACILITY: `/api/v0/admin/room-facilities`,
+    UPDATE_FACILITY: (id:string)=> `/api/v0/admin/room-facilities/${id}`,
+    DELETE_FACILITY:(id:string)=> `/api/v0/admin/room-facilities/${id}`,
+    GET_DETAILS_FACILITY:(id:string)=> `/api/v0/admin/room-facilities/${id}`
+}
+
