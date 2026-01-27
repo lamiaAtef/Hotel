@@ -46,4 +46,10 @@ export const PHONE_VALIDATION={
         message:"Phone number must start with 01 and be 11 digits in total"
      }
 }
+export const CONFIRM_PASSWORD_VALIDATION = (password: string) => ({
+  required: getRequiredMessage("Confirm Password"),
+  validate: (value: string) =>
+    value === password || "Passwords do not match",
+});
+
 export const REQUIRED_VALIDATION = (fieldName:string) => ({ required: getRequiredMessage(fieldName) })

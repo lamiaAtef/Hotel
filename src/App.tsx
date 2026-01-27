@@ -16,6 +16,8 @@ import AdminDashBoard from "./features/admin/pages/AdminDashBoard";
 import UserDashBoard from "./features/user/pages/UserDashBoard";
 import AuthContextProvider from "./features/auth/context/AuthContext";
 import { ToastContainer} from 'react-toastify';
+import ChangePassword from "./features/auth/pages/ChangePassword";
+import RoomData from "./features/admin/pages/RoomData";
 
 
 
@@ -34,7 +36,7 @@ const routes = createBrowserRouter(
           {path:"forget-pass",element:<ForgetPassword/>},
           {path:"reset-pass",element:<ResetPassword/>},
           // {path:"verify-account",element:<Verify/>},
-          // {path:"change-pass",element:<ChangePassword/>}
+          {path:"change-pass",element:<ChangePassword/>}
         ]
       },
       {
@@ -44,6 +46,7 @@ const routes = createBrowserRouter(
         children:[
           {index:true, element:<AdminDashBoard/>},
           {path:"home", element:<AdminDashBoard/>},
+          {path:"addRoom",element:<RoomData></RoomData>}
          
          
         ]
@@ -55,6 +58,7 @@ const routes = createBrowserRouter(
         children:[
           {index:true, element:<UserDashBoard/>},
           {path:"home", element:<UserDashBoard/>},
+          
          
          
         ]

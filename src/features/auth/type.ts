@@ -69,3 +69,14 @@ export interface ResetPayload {
 export interface ForgetPayload{
   email: string;
 }
+export interface Changepalyod{
+  oldPassword:string,
+  newPassword:string,
+  confirmPassword:string
+}
+export interface UploadFileImgProps{
+  title: string;
+}
+export interface DeletProps{
+  title: string;
+}
