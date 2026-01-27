@@ -1,6 +1,6 @@
-export interface UpladFileImgProps{
-    title:string;
-}
-export interface DeleteProps{
-    title:string;
-}
+ export interface UploadFileImgProps{
+  title:string;
+ }
+ export interface DeleteProps{
+  title:string;
+ }

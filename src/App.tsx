@@ -21,10 +21,10 @@ import Facilities from "./features/admin/pages/Facilities";
 import Users from "./features/admin/pages/Users";
 import Booking from "./features/admin/pages/Booking";
 import Rooms from "./features/admin/pages/Rooms";
-import RoomData from "./features/admin/pages/RoomData";
 import ChangePassword from "./features/auth/pages/ChangePassword";
 import AdminProtectedRoute from "./routes/AdminProtectedRoute";
 import Unauthorized from "./shared/pages/Unauthorized";
+import RoomData from "./features/admin/pages/RoomData";
 
 
 
@@ -44,9 +44,6 @@ const routes = createBrowserRouter(
           {path:"reset-pass",element:<ResetPassword/>},
           {path:"change-pass",element:<ChangePassword/>},
           {path:"unAuthorized",element:<Unauthorized/>},
-
-          // {path:"verify-account",element:<Verify/>},
-          // {path:"change-pass",element:<ChangePassword/>}
         ]
       },
       {
@@ -59,7 +56,7 @@ const routes = createBrowserRouter(
           {path:"ads", element:<Ads/>},
           {path:"facilites", element:<Facilities/>},
           {path:"rooms", element:<Rooms/>},
-          {path:"roomData", element:<RoomData/>},
+          {path:"addRoom", element:<RoomData/>},
           {path:"users", element:<Users/>},
           {path:"booking", element:<Booking/>}
          
@@ -72,6 +69,7 @@ const routes = createBrowserRouter(
         children:[
           {index:true, element:<UserDashBoard/>},
           {path:"home", element:<UserDashBoard/>},
+          
          
          
         ]

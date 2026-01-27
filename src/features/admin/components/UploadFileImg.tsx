@@ -1,8 +1,8 @@
 import { Box, Typography } from "@mui/material";
 import uploadImg from "../../../assets/images/Upload.png";
-import type { UpladFileImgProps } from "../type";
+import type { UploadFileImgProps } from "../type";
 
-export default function UploadFileImg({ title }:UpladFileImgProps) {
+export default function UploadFileImg({ title }:UploadFileImgProps) {
   return (
     <Box
       sx={{
