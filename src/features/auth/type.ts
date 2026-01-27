@@ -75,6 +75,6 @@ export interface UserRouteProps {
 }
 export interface changePayload{
    oldPassword:string;
-   newPassworf:string;
+   newPassword:string;
    confirmPassword:string;
 }
