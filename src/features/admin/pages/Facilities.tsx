@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function MainLayout() {
+export default function Facilities() {
   return (
     <div>
-      userLayout
+      Facilities
     </div>
   )
 }
