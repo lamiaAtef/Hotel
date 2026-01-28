@@ -16,10 +16,11 @@ export default function SideBar({ isCollapsed, setIsCollapsed, onCloseDrawer }: 
 
 
   const logoutUser = useLogout();
-  const handleMenuClose = () => {
+  const handleMenuClose = (isLogout?:Boolean) => {
      if (isMobile && onCloseDrawer) {
               onCloseDrawer();
             }
+        if(isLogout){logoutUser();}
   }
 
   return (
@@ -30,28 +31,28 @@ export default function SideBar({ isCollapsed, setIsCollapsed, onCloseDrawer }: 
         </IconButton>
 
         <Menu>
-          <MenuItem onClick={handleMenuClose} component={<Link to="/admin-dashboard" />} icon={<HomeIcon />} className={pathname === "/admin-dashboard" ? "active" : ""}>
+          <MenuItem onClick={()=>handleMenuClose(false)} component={<Link to="/admin-dashboard" />} icon={<HomeIcon />} className={pathname === "/admin-dashboard" ? "active" : ""}>
             Home
           </MenuItem>
-          <MenuItem onClick={handleMenuClose}  component={<Link to="/admin-dashboard/users" />} icon={<PeopleOutlineIcon />} className={pathname === "/admin-dashboard/users" ? "active" : ""}>
+          <MenuItem onClick={()=>handleMenuClose(false)}  component={<Link to="/admin-dashboard/users" />} icon={<PeopleOutlineIcon />} className={pathname === "/admin-dashboard/users" ? "active" : ""}>
             Users
           </MenuItem>
-          <MenuItem onClick={handleMenuClose}  component={<Link to="/admin-dashboard/rooms" />} icon={<BorderAllIcon />} className={pathname === "/admin-dashboard/rooms" ? "active" : ""}>
+          <MenuItem onClick={()=>handleMenuClose(false)}  component={<Link to="/admin-dashboard/rooms" />} icon={<BorderAllIcon />} className={pathname === "/admin-dashboard/rooms" ? "active" : ""}>
             Rooms
           </MenuItem>
-          <MenuItem onClick={handleMenuClose}  component={<Link to="/admin-dashboard/ads" />} icon={<BorderClearIcon />} className={pathname === "/admin-dashboard/ads" ? "active" : ""}>
+          <MenuItem onClick={()=>handleMenuClose(false)}  component={<Link to="/admin-dashboard/ads" />} icon={<BorderClearIcon />} className={pathname === "/admin-dashboard/ads" ? "active" : ""}>
             Ads
           </MenuItem>
-          <MenuItem onClick={handleMenuClose}  component={<Link to="/admin-dashboard/booking" />} icon={<PeopleOutlineIcon />} className={pathname === "/admin-dashboard/booking" ? "active" : ""}>
+          <MenuItem onClick={()=>handleMenuClose(false)}  component={<Link to="/admin-dashboard/booking" />} icon={<PeopleOutlineIcon />} className={pathname === "/admin-dashboard/booking" ? "active" : ""}>
             Booking
           </MenuItem>
-          <MenuItem onClick={handleMenuClose}  component={<Link to="/admin-dashboard/facilites" />} icon={<AddCardIcon />} className={pathname === "/admin-dashboard/facilites" ? "active" : ""}>
+          <MenuItem onClick={()=>handleMenuClose(false)}  component={<Link to="/admin-dashboard/facilites" />} icon={<AddCardIcon />} className={pathname === "/admin-dashboard/facilites" ? "active" : ""}>
             Facilites
           </MenuItem>
           <MenuItem  component={<Link to="/change-pass" />} icon={<LockOutlineIcon />}>
             Change Password
           </MenuItem>
-          <MenuItem icon={<LogoutIcon />} onClick={logoutUser}>
+          <MenuItem icon={<LogoutIcon />} onClick={()=>handleMenuClose(true)}>
             Log Out
           </MenuItem>
         </Menu>
