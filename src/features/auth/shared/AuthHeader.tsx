@@ -14,7 +14,7 @@ export default function AuthHeader({title,isLogin}:AuthHeaderProps) {
         buttonText: isLogin ? "Register here !" : "Login here !",
         buttonColor: isLogin ? "primary" : "error",
         customColor: isLogin ? "#152C5B" : " #EB5148;",
-        path: isLogin ? "/register" : "/login",
+        path: isLogin ? "/auth/register" : "/auth/login",
       };
   return (
     <>

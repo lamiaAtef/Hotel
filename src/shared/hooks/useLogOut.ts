@@ -31,7 +31,7 @@ export default function useLogout() {
                 pauseOnHover: false,
                 draggable: false,
                 progress: undefined,
-                onClose: ()=> navigate('/dashboard/home')
+                onClose: ()=> navigate('/')
               });
            
           }

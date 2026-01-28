@@ -33,7 +33,7 @@ function App() {
 const routes = createBrowserRouter(
     [
       {
-        path:"",
+        path:"auth",
         element:<AuthLayout/>,
         errorElement:<NotFound/>,
         children:[
@@ -63,7 +63,7 @@ const routes = createBrowserRouter(
         ]
       },
        {
-        path:"dashboard",
+        path:"",
         element:<MainLayout/>,
         errorElement:<NotFound/>,
         children:[

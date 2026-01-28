@@ -42,7 +42,7 @@ const registerdata=appendToFormData(data);
 try {
   const response= await  axios.post(`${baseURL}${AUTH_URLS.REGISTER}`,registerdata);
   toast.success(response?.data?.message);
-  navigate("/login");
+  navigate("/auth/login");
 
 
 } catch (error:unknown) {

@@ -4,8 +4,8 @@ import { useAuth } from "../features/auth/hooks/useAuth";
 
 const AdminProtectedRoute = ({ children }:UserRouteProps) => {
   const { userData } = useAuth();
-  if (!userData) return <Navigate to="/dashboard/home" />; 
-  if (userData && userData?.role !== "admin") return <Navigate to="/unAuthorized" />; 
+  if (!userData) return <Navigate to="/" />; 
+  if (userData && userData?.role !== "admin") return <Navigate to="/notFound" />; 
   return children;
 };
 

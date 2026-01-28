@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import type { ForgetPayload } from "../type";
 import { axiosInstance } from "../../../services/httpClient";
 import { AUTH_URLS } from "../../../config/api.endPoint";
@@ -13,6 +12,7 @@ import {
 } from "@mui/material";
 import { EMAIL_VALIDATION } from "../validation/validation";
 import AuthHeader from "../shared/AuthHeader";
+import { useNavigate } from "react-router-dom";
 
 
 export default function ForgetPassword() {
@@ -23,6 +23,7 @@ export default function ForgetPassword() {
     handleSubmit,
     formState: { errors },
   } = useForm<ForgetPayload>();
+  const navigate = useNavigate();
 
   const onSubmit = async (data: ForgetPayload) => {
     try {
@@ -34,7 +35,7 @@ export default function ForgetPassword() {
       toast.success(
         response?.data?.message || "Check your email to forget password"
       );
-
+      navigate("/auth/reset-password");
   
     } catch (error: any) {
       toast.error(error.response?.data?.message || "Something went wrong");

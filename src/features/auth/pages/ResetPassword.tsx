@@ -32,7 +32,7 @@ export default function ResetPassword() {
         response?.data?.message || `Your password has been reset successfully.`
       );
       
-      navigate('/');
+      navigate('/auth/login');
       
       
     } catch (error: any) {

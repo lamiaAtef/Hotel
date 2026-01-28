@@ -24,12 +24,12 @@ export default function AuthLayout() {
 
   return (
     <Grid container sx={{height:"100vh",paddingTop:"10px"}} >
-      <Grid size={{xs:12 , md:7 }}  sx={{paddingLeft:"50px",marginTop:"30px"}}>
+      <Grid size={{xs:12 , md:6 }}  sx={{paddingLeft:"50px",marginTop:"30px"}}>
         <Logo/> 
          <Outlet />
       </Grid>
 
-      <Grid size={{xs:0 , md:5}} 
+      <Grid size={{xs:0 , md:6}} 
               sx={{
               minHeight:"100%" ,
               backgroundImage:`url(${authImages[key]})`,
