@@ -16,6 +16,10 @@ export const AUTH_URLS = {
 }
 export const ADMIN_URLS = {
     DASHBOARD : `/admin/dashboard`,
+    ALL_ROOMS : `/admin/rooms`,
+    ALL_ADS : `/admin/ads`,
+    ALL_FACILITIES :`/admin/room-facilities`,
+   
 }
 export const USER_URLS = {
    

@@ -54,14 +54,15 @@ const StyledInputBase = styled(InputBase)(({ theme }) => ({
   },
 }));
 
-export default function NavBar() {
+export default function NavBar({onMenuClick}:any) {
   const logoutUser = useLogout()
   const {userData} = useAuth();
   console.log(userData,"userData")
   
+  
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-  const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
-  React.useState<null | HTMLElement>(null);
+  // const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
+  // React.useState<null | HTMLElement>(null);
 
   const isMenuOpen = Boolean(anchorEl);
   // const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -70,14 +71,14 @@ export default function NavBar() {
     setAnchorEl(event.currentTarget);
   };
 
-  const handleMobileMenuClose = () => {
-    setMobileMoreAnchorEl(null);
-  };
+  // const handleMobileMenuClose = () => {
+  //   setMobileMoreAnchorEl(null);
+  // };
 
   const handleMenuClose = (userChoose:string):void => {
     userChoose === "logoutUser" ? logoutUser() : ""
     setAnchorEl(null);
-    handleMobileMenuClose();
+    // handleMobileMenuClose();
   };
 
   // const handleMobileMenuOpen = (event: React.MouseEvent<HTMLElement>) => {
@@ -126,7 +127,8 @@ export default function NavBar() {
             edge="start"
             color="inherit"
             aria-label="open drawer"
-            sx={{ mr: 2 ,display: { xs: "flex", md: "none" }}}>
+            sx={{ mr: 2 ,display: { xs: "flex", md: "none" }}}
+            onClick={onMenuClick}>
             <MenuIcon />
           </IconButton>
          
