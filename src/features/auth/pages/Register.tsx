@@ -92,7 +92,7 @@ else{
 
             />
 <Stack direction="row" spacing={2}>
-  <TextField  type="number" label="phoneNumber"
+  <TextField  type="text" label="phoneNumber"
     sx={{
               "& .MuiOutlinedInput-root": {
                 backgroundColor: "#F5F6F8",

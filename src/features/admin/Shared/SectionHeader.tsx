@@ -7,7 +7,7 @@ import type { SectionHeaderProps } from '../type';
 export default function SectionHeader({title,subtitle,buttonText,onButtonClick}:SectionHeaderProps) {
   return (
     <>
-    <Box component="div" display="flex" justifyContent="space-between" alignItems="center" sx={{marginX:"10px"}}>
+    <Box component="div" display="flex" justifyContent="space-between" alignItems="center" sx={{marginX:"20px"}}>
         <Stack>
             <Typography variant="h6">
                 {title}

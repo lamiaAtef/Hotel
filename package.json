@@ -16,6 +16,7 @@
     "@mui/icons-material": "^7.3.7",
     "@mui/material": "^7.3.7",
     "@mui/styled-engine-sc": "^7.3.7",
+    "@mui/x-data-grid": "^8.26.0",
     "axios": "^1.13.2",
     "jwt-decode": "^4.0.0",
     "react": "^19.2.0",
@@ -23,8 +24,11 @@
     "react-hook-form": "^7.71.1",
     "react-pro-sidebar": "^1.1.0",
     "react-router-dom": "^7.12.0",
+    "react-spinners": "^0.17.0",
     "react-toastify": "^11.0.5",
-    "styled-components": "^6.3.8"
+    "styled-components": "^6.3.8",
+    "sweetalert": "^2.1.2",
+    "sweetalert2": "^11.26.17"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",

@@ -44,7 +44,7 @@ export interface LoginResponse {
 export interface AuthContextType {
    userData: User | null;
 //   loginUser: (user: User, token: string) => void;
-//   logoutUser: () => void;
+    logOut: () => void;
     saveUserData: () => void;
     setUserData: React.Dispatch<React.SetStateAction<User | null>>;
 }
@@ -69,3 +69,14 @@ export interface ResetPayload {
 export interface ForgetPayload{
   email: string;
 }
+// route interface
+export interface UserRouteProps {
+  children: ReactNode;
+}
+
+
+export  interface Changepalyod{
+  oldPassword : string;
+  newPassword:string;
+  confirmPassword:string;
+ }

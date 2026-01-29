@@ -13,8 +13,8 @@ import {
 } from "@mui/material";
 import { EMAIL_VALIDATION } from "../validation/validation";
 import AuthHeader from "../shared/AuthHeader";
-import {useEffect } from "react";
-// import { AuthContext } from "../context/AuthContext";
+import { useContext, useEffect } from "react";
+import { AuthContext } from "../context/AuthContext";
 
 export default function ForgetPassword() {
   const navigate = useNavigate();
