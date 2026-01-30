@@ -16,6 +16,11 @@ export const AUTH_URLS = {
 }
 export const ADMIN_URLS = {
     DASHBOARD : `/admin/dashboard`,
+    CREATEROOM:`/admin/rooms`,
+    GETALLFACILITES:`/admin/room-facilities`,
+    GETALLROOMS:`/admin/rooms`,
+    EDITROOM :`/admin/rooms`,
+    DELETEROOM:`/admin/rooms`
 }
 export const USER_URLS = {
    

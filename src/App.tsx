@@ -57,6 +57,7 @@ const routes = createBrowserRouter(
           {path:"facilites", element:<Facilities/>},
           {path:"rooms", element:<Rooms/>},
           {path:"addRoom", element:<RoomData/>},
+          {path:"addRoom/:id" ,element:<RoomData /> },
           {path:"users", element:<Users/>},
           {path:"booking", element:<Booking/>}
          
