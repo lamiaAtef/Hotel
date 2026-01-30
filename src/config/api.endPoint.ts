@@ -16,11 +16,12 @@ export const AUTH_URLS = {
 }
 export const ADMIN_URLS = {
     DASHBOARD : `/admin/dashboard`,
-    ALL_ROOMS : `/admin/rooms`,
-    ALL_ADS : `/admin/ads`,
-    ALL_FACILITIES :`/admin/room-facilities`,
-    GET_ALL_USERS : `/admin/users`,
-    GET_ALL_BOOKINGS : `/admin/booking`,
+    CREATEROOM:`/admin/rooms`,
+    GETALLFACILITES:`/admin/room-facilities`,
+    GETALLROOMS:`/admin/rooms`,
+    EDITROOM :`/admin/rooms`,
+    DELETEROOM:`/admin/rooms`,
+     GET_ALL_BOOKINGS : `/admin/booking`,
     GET_BOOKING_DETAILS : (bookingId:string) => `/admin/booking/${bookingId}`,
 }
 export const USER_URLS = {
