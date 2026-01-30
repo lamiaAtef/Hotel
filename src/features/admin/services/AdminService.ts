@@ -14,7 +14,13 @@ const AdminService = {
     },
     getDashboardStats: () => {
         return axiosInstance.get(ADMIN_URLS.DASHBOARD)
-    }
+    },
+    getAllBookings: () => {
+        return axiosInstance.get(ADMIN_URLS.GET_ALL_BOOKINGS)
+    },
+    getBookingDetails: (bookingId: string) => {
+        return axiosInstance.get(ADMIN_URLS.GET_BOOKING_DETAILS(bookingId))
+    },
 
    
 }
