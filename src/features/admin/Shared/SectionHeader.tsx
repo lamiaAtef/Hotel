@@ -17,9 +17,12 @@ export default function SectionHeader({title,subtitle,buttonText,onButtonClick}:
             </Typography>
         </Stack>
 
+        {buttonText &&
+
         <Button onClick={onButtonClick} variant="contained" className='btnAdmin'>
           {buttonText}
         </Button>
+}
 
     </Box>
       

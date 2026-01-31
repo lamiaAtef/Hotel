@@ -31,14 +31,11 @@ import {
 import DeleteConfirm from "../components/DeleteConfirm";
 import {RiseLoader} from "react-spinners";
 import CustomDialog from "../Shared/CustomDialog";
+import CustomPagination from "../Shared/CustomPagination";
 
 export default function Facilities() {
   const [rows, setRows] = useState<FacilityRow[]>([]);
   const [loading, setLoading] = useState(false);
-  const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
-  const [rowCount, setRowCount] = useState(0);
-  // const [search, setSearch] = useState("");
 
   // to open and close menu
   /* state to hold item in menu if anchorEl with null ,menu is close. 
@@ -84,18 +81,22 @@ export default function Facilities() {
   // view modal
   const [openView, setOpenView] = useState(false);
 
+  // Pagination state
+  const [page, setPage] = useState(0); 
+  const [rowsPerPage] = useState(10);
+  const [totalCount, setTotalCount] = useState(0);
+
   // getAllFacilities
-    const getAllFacilities =async(pageNumber:number, size:number,) =>{
+    const getAllFacilities =async(pageNumber =0) =>{
         try {
             setLoading(true);
 
             const response = await axiosInstance.get(ROOM_FACILITIES_URLS.GET_ALL_FACILITIES,
-                {
-                    params:{
-                        pageNumber: pageNumber+1,
-                        pageSize: size,
-                    },
-                });
+              {
+                params:{
+                  page: pageNumber +1,
+                  size: rowsPerPage
+                }});
             console.log(response?.data?.data?.facilities)
             const facilities = response.data.data.facilities.map((f: any) => ({
                 id: f._id,
@@ -105,7 +106,7 @@ export default function Facilities() {
               }));
         
               setRows(facilities);
-              setRowCount(response.data.data.totalCount);
+              setTotalCount(response.data.data.totalCount);
             
         } catch (error) {
             console.error("Error fetching facilities", error);
@@ -128,7 +129,7 @@ export default function Facilities() {
         toast.success("Facility updated successfully",{autoClose: 3000})
         setFacilityName('');
         setCurrentFacilityId(null);
-        getAllFacilities(page,rowsPerPage);
+        getAllFacilities(page);
         
       } catch (error) {
         toast.error("Failed to updated Facility");
@@ -142,7 +143,15 @@ export default function Facilities() {
         handleClose();
         toast.success("Add New Facility successfully",{autoClose: 3000})
         setFacilityName('');
-        getAllFacilities(page,rowsPerPage);
+
+        if (page !== 0) {
+          setPage(0); // هيعمل useEffect وينادي getAllFacilities(0)
+        } else {
+          getAllFacilities(0); // لو كنا أصلاً في الصفحة الأولى، نجيب بيانات الصفحة الأولى من الباك
+        }
+
+        // setPage(0);
+        // getAllFacilities(page);
         
       } catch (error) {
         toast.error('Failed to create facility',{autoClose:2000})
@@ -158,7 +167,7 @@ export default function Facilities() {
       await axiosInstance.delete(ROOM_FACILITIES_URLS.DELETE_FACILITY(selectedRow.id));
       toast.success("Facility deleted successfully",{autoClose: 3000});
       setDeleteOpen(false);
-      getAllFacilities(page, rowsPerPage);
+      getAllFacilities(page);
       
     } catch (error) {
       toast.error("Failed to delete Facility",{autoClose:3000});
@@ -167,8 +176,10 @@ export default function Facilities() {
   }
 
     useEffect(()=>{
-        getAllFacilities(page, rowsPerPage);
-    },[page, rowsPerPage])
+        getAllFacilities(page);
+    },[page])
+
+    
 
 
   return (
@@ -290,6 +301,14 @@ export default function Facilities() {
     <ListItemText>Delete</ListItemText>
   </MenuItem>
 </Menu>
+
+   {/* Pagination */}
+<CustomPagination
+        page={page}
+        rowsPerPage={rowsPerPage}
+        rowCount={totalCount}
+        onPageChange={(newPage) => setPage(newPage)}
+      />
 
       
     </>

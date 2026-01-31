@@ -18,6 +18,7 @@ export const ADMIN_URLS = {
     DASHBOARD : `/admin/dashboard`,
 }
 export const USER_URLS = {
+    GET_ALL_USERS: `/admin/users`
    
 }
 

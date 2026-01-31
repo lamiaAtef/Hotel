@@ -28,3 +28,24 @@ export interface SectionHeaderProps{
     children: React.ReactNode; 
     maxWidth?: "xs" | "sm" | "md" | "lg";
   }
+
+  export interface User{
+    _id: string;
+    userName: string;
+    email: string;
+    phoneNumber: number;
+    country: string;
+    role: string;
+    profileImage: string;
+    createdAt?: string;
+    updatedAt?: string;
+
+  }
+
+  export interface CustomPaginationProps {
+    page: number;          // 0-based
+    rowsPerPage: number;
+    rowCount: number;
+    onPageChange: (page: number) => void;
+    siblingCount?: number; // عدد الصفحات اللي جنب الصفحة الحالية
+  }
