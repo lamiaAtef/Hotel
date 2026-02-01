@@ -6,28 +6,29 @@ import { useState } from "react";
 export default function UploadFileImg({
   title,
   register,
-  error,
+  error
 }: UploadFileImgProps) {
   const [files, setFiles] = useState<File[]>([]);
 
   return (
     <Box sx={{ width: "100%", mb: 3 }}>
-      <input
-        type="file"
-        id="upload"
-        accept="image/*"
-        multiple
-        hidden
-        {...register("imgs")}
-        onChange={(e) => {
-          const selectedFiles = e.target.files;
-          if (selectedFiles) {
-            setFiles(Array.from(selectedFiles));
-          }
-        }}
-      />
+     <input
+  type="file"
+  id="upload"
+  accept="image/*"
+  multiple
+  hidden
+  {...register("imgs", {
+    onChange: (e: React.ChangeEvent<HTMLInputElement>) => {
+      const selectedFiles = e.target.files;
+      if (selectedFiles) {
+        setFiles(Array.from(selectedFiles));
+      }
+    },
+  })}
+/>
 
-      {/* Upload Box */}
+
       <Box
         component="label"
         htmlFor="upload"
@@ -59,7 +60,7 @@ export default function UploadFileImg({
         </Typography>
       </Box>
 
-      {/* File names - horizontal */}
+      
       {files.length > 0 && (
         <Box
           sx={{

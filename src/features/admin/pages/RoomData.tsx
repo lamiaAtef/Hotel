@@ -18,6 +18,8 @@ export default function RoomData() {
  const navigate=useNavigate()
   const [facilitiesList, setFacilitiesList] = useState<any[]>([]);
   const [facilitiesLoading, setFacilitiesLoading] = useState(true);
+const [existingImages, setExistingImages] = useState<string[]>([]);
+const [removedImages, setRemovedImages] = useState<string[]>([]);
 
   const {
     register,
@@ -27,9 +29,7 @@ export default function RoomData() {
     formState: { errors },
   } = useForm<CreateRommPayload>();
 
-  // =========================
-  // Submit (Create / Update)
-  // =========================
+
   const onSubmit = async (data: CreateRommPayload) => {
     const formData = new FormData();
 
@@ -45,10 +45,11 @@ export default function RoomData() {
       formData.append("facilities[]", facility);
     });
 
-    Array.from(data.imgs || []).forEach((file) => {
-      formData.append("imgs", file);
-    });
-
+if (data.imgs && data.imgs.length > 0) {
+  Array.from(data.imgs).forEach((file) => {
+    formData.append("imgs", file);
+  });
+}
     try {
       const response = id
         ? await axiosInstance.put(
@@ -75,9 +76,7 @@ export default function RoomData() {
     }
   };
 
-  // =========================
-  // Get facilities
-  // =========================
+  
   useEffect(() => {
     setFacilitiesLoading(true);
 
@@ -95,29 +94,32 @@ export default function RoomData() {
       });
   }, []);
 
-  // =========================
-  // Get room data (Edit mode)
-  // =========================
-  useEffect(() => {
-    if (!id) return;
+  
+useEffect(() => {
+  if (!id) return;
 
-    axiosInstance
-      .get(`${ADMIN_URLS.EDITROOM}/${id}`)
-      .then((res) => {
-        const room = res?.data?.data?.room;
+  axiosInstance
+    .get(`${ADMIN_URLS.EDITROOM}/${id}`)
+    .then((res) => {
+      const room = res?.data?.data?.room;
 
-        reset({
-          roomNumber: room.roomNumber,
-          price: room.price,
-          capacity: room.capacity,
-          discount: room.discount,
-          facilities: room.facilities.map((f: any) => f._id),
-        });
-      })
-      .catch(() => {
-        toast.error("Failed to load room data");
+      reset({
+        roomNumber: room.roomNumber,
+        price: room.price,
+        capacity: room.capacity,
+        discount: room.discount,
+        facilities: room.facilities.map((f: any) => f._id),
       });
-  }, [id, reset]);
+
+      
+      setExistingImages(room.imgs || room.images || []);
+    })
+    .catch(() => {
+      toast.error("Failed to load room data");
+    });
+}, [id, reset]);
+
+
 
   return (
     <Box
@@ -166,7 +168,7 @@ export default function RoomData() {
         />
       </Box>
 
-      {/* Discount & Facilities */}
+    
       <Box display="flex" gap={2} mb={3}>
         <TextField
           fullWidth
@@ -208,14 +210,61 @@ export default function RoomData() {
         />
       </Box>
 
-      {/* Upload Images */}
+{existingImages.length > 0 && (
+  <Box mb={3}>
+    <Box display="flex" gap={2} flexWrap="wrap">
+      {existingImages.map((img, index) => (
+        <Box key={index} position="relative">
+          {/* الصورة */}
+          <Box
+            component="img"
+            src={img}
+            sx={{
+              width: 120,
+              height: 120,
+              objectFit: "cover",
+              borderRadius: 2,
+              border: "1px solid #ddd",
+            }}
+          />
+
+          {/* زر X */}
+          <Button
+            size="small"
+            onClick={() => {
+              setExistingImages((prev) =>
+                prev.filter((_, i) => i !== index)
+              );
+              setRemovedImages((prev) => [...prev, img]);
+            }}
+            sx={{
+              position: "absolute",
+              top: -8,
+              right: -8,
+              minWidth: 24,
+              height: 24,
+              borderRadius: "50%",
+              backgroundColor: "#d32f2f",
+              color: "#fff",
+              "&:hover": { backgroundColor: "#b71c1c" },
+            }}
+          >
+            ✕
+          </Button>
+        </Box>
+      ))}
+    </Box>
+  </Box>
+)}
+
+
       <UploadFileImg
         title="Choose a Room Image"
         register={register}
         error={errors.imgs?.message}
       />
 
-      {/* Submit */}
+     
       <Box display="flex" justifyContent="center" mt={3}>
         <Button
           type="submit"

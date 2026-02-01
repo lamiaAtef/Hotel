@@ -25,7 +25,7 @@ import {
   Button,
   Typography,
 } from '@mui/material';
-import SectionHeader from '../shared/SectionHeader';
+import SectionHeader from '../Shared/SectionHeader';
 import { useNavigate } from 'react-router-dom';
 
 import ListItemIcon from '@mui/material/ListItemIcon';
@@ -112,7 +112,8 @@ export default function Rooms() {
   const filteredRooms = rooms.filter((room) => {
     const matchesSearch =
       room.roomNumber
-        ?.toLowerCase()
+    ?.toString()
+    .toLowerCase()
         .includes(search.toLowerCase());
 
     const matchesCapacity = capacityFilter
@@ -248,6 +249,8 @@ export default function Rooms() {
 
             <TableBody>
               {filteredRooms.map((room, index) => (
+                <>
+                {console.log("ROOM IMAGES:", room.images)}
                 <TableRow
                   key={room._id}
                   sx={{
@@ -261,21 +264,29 @@ export default function Rooms() {
                     {room.roomNumber}
                   </TableCell>
 
-                  <TableCell align="right">
-                    {room.images?.length ? (
-                      <img
-                        src={room.images[0]}
-                        width="50"
-                        height="40"
-                        style={{
-                          borderRadius: '6px',
-                          objectFit: 'cover',
-                        }}
-                      />
-                    ) : (
-                      'No Image'
-                    )}
-                  </TableCell>
+<TableCell align="right">
+  {Array.isArray(room.images) && room.images.length > 0 ? (
+    <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
+      <img
+        src={room.images?.[0]}
+        alt="room"
+        width={50}
+        height={40}
+        style={{
+          objectFit: 'cover',
+          borderRadius: '4px',
+        }}
+      />
+    </Box>
+  ) : (
+    <Typography variant="caption" color="text.secondary">
+      No Image
+    </Typography>
+  )}
+</TableCell>
+
+
+
 
                   <TableCell align="right">
                     {room.discount}%
@@ -295,7 +306,9 @@ export default function Rooms() {
                     </IconButton>
                   </TableCell>
                 </TableRow>
+                 </>
               ))}
+             
             </TableBody>
           </Table>
         </TableContainer>
@@ -398,7 +411,9 @@ export default function Rooms() {
                         borderRadius: '6px',
                         objectFit: 'cover',
                       }}
+                      
                     />
+                    
                   )
                 )}
               </Box>
