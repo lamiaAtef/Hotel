@@ -31,7 +31,7 @@ export default function AuthLayout() {
          <Outlet />
       </Grid>
 
-      <Grid size={{xs:0 , md:6}} 
+      <Grid size={{xs:0 , md:5}} 
               sx={{
               minHeight:"100%" ,
               backgroundImage:`url(${authImages[key]})`,

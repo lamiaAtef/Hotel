@@ -99,8 +99,8 @@ export default function Booking() {
   <Stack spacing={2} >
     <Typography><strong>Room Number:</strong> {bookingDetails?.room?.roomNumber}</Typography>
     <Typography><strong>Price:</strong> {bookingDetails?.totalPrice}</Typography> 
-    <Typography><strong>Start Date:</strong> {bookingDetails?.startDate}</Typography>
-    <Typography><strong>End Date:</strong> {bookingDetails?.endDate}</Typography>
+    <Typography><strong>Start Date:</strong> {new Date(bookingDetails?.startDate).toLocaleDateString()}</Typography>
+    <Typography><strong>End Date:</strong> {new Date(bookingDetails?.endDate).toLocaleDateString()}</Typography>
     <Typography><strong>User Name:</strong> {bookingDetails?.user?.userName}</Typography>
     </Stack>
    :<RiseLoader  color="blue"/>}
