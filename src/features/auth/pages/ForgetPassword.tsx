@@ -36,7 +36,7 @@ export default function ForgetPassword() {
         response?.data?.message || "Check your email to forget password"
       );
 
-      navigate('/reset-pass', {state: {email: data.email}});
+      navigate('/auth/reset-pass', {state: {email: data.email}});
 
   
     } catch (error: any) {
