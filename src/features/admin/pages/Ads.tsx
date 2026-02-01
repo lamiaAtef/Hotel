@@ -135,7 +135,7 @@ export default function Ads() {
       isActive: ad.isActive.toString(),
     });
     setOpenAdd(true);
-    handleCloseMenu();
+    handleCloseMenu();``
   };
 
   const viewAds = (ad: any) => {
