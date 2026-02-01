@@ -3,3 +3,19 @@
   padding: 0;
   box-sizing: border-box;
 }
+
+:root{
+  --bgColor: #203FC7;
+  --mainColor:#203FC7;
+}
+
+.btnAdmin{
+  color:#fff;
+  background-color: var(--bgColor);
+}
+.viewAction{
+  color: var(--mainColor);
+}
+.viewAction svg{
+  color: var(--mainColor);
+}

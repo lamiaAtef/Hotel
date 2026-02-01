@@ -16,17 +16,16 @@ import AdminDashBoard from "./features/admin/pages/AdminDashBoard";
 import UserDashBoard from "./features/user/pages/UserDashBoard";
 import AuthContextProvider from "./features/auth/context/AuthContext";
 import { ToastContainer} from 'react-toastify';
+// import RoomFacilities from "./features/admin/pages/RoomFacilities";
 import Ads from "./features/admin/pages/Ads";
 import Facilities from "./features/admin/pages/Facilities";
+import Users from "./features/admin/pages/Users";
 import Booking from "./features/admin/pages/Booking";
 import Rooms from "./features/admin/pages/Rooms";
 import ChangePassword from "./features/auth/pages/ChangePassword";
 import AdminProtectedRoute from "./routes/AdminProtectedRoute";
 import Unauthorized from "./shared/pages/Unauthorized";
 import RoomData from "./features/admin/pages/RoomData";
-import Users from "./features/admin/pages/Users";
-
-
 
 
 function App() {

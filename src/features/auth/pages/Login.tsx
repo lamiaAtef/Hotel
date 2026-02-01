@@ -45,11 +45,32 @@ export default function Login() {
           <TextField
             label="Email"
             type="email"
+
+            sx={{
+              "& .MuiOutlinedInput-root": {
+                backgroundColor: "#F5F6F8",
+                borderRadius: "8px",
+                "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+                borderColor: "#aab5bf",
+                color:"#000" // border color in focus
+                },
+                
+                "& .MuiOutlinedInput-notchedOutline": {
+                borderColor: "#ccc", // border color in normal mode
+                },
+                },
+                "& .MuiInputLabel-root": {
+                backgroundColor: "#f5f6f8",
+                color:"#000", 
+                padding: "0 4px",
+                },
+                }}
+
             {...register("email", EMAIL_VALIDATION)}
             error={!!errors.email}
             helperText={errors.email?.message}
           />
-            <TextField type={showPassword? "text":"password"}  id="password" label="password" variant="outlined" 
+          <TextField type={showPassword? "text":"password"}  id="password" label="password" variant="outlined" 
         sx={{
         "& .MuiOutlinedInput-root": {
           backgroundColor: "#F5F6F8",

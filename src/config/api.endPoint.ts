@@ -32,6 +32,15 @@ export const ADS_URLS = {
     GET_ADS_DETAILS:(id:string)=>`/admin/ads/${id}`,
 }
 export const USER_URLS = {
+    GET_ALL_USERS: `/admin/users`
    
+}
+
+export const ROOM_FACILITIES_URLS={
+    GET_ALL_FACILITIES:`/admin/room-facilities`,
+    ADD_NEW_FACILITY: `/admin/room-facilities`,
+    UPDATE_FACILITY: (id:string)=> `/admin/room-facilities/${id}`,
+    DELETE_FACILITY:(id:string)=> `/admin/room-facilities/${id}`,
+    GET_DETAILS_FACILITY:(id:string)=> `/admin/room-facilities/${id}`
 }
 

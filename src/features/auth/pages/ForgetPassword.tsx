@@ -16,14 +16,14 @@ import { useNavigate } from "react-router-dom";
 
 
 export default function ForgetPassword() {
- 
+  const navigate = useNavigate();
+//  const authContext = useContext(AuthContext);
 
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm<ForgetPayload>();
-  const navigate = useNavigate();
 
   const onSubmit = async (data: ForgetPayload) => {
     try {
@@ -35,7 +35,9 @@ export default function ForgetPassword() {
       toast.success(
         response?.data?.message || "Check your email to forget password"
       );
-      navigate("/auth/reset-pass");
+
+      navigate('/reset-pass', {state: {email: data.email}});
+
   
     } catch (error: any) {
       toast.error(error.response?.data?.message || "Something went wrong");
