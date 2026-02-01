@@ -45,3 +45,10 @@ export interface DeleteConfirmProps {
   onClose: () => void;
   onConfirm: () => void;
 }
+export interface AdsPayload{
+
+   _id:string;
+   isActive:boolean;
+
+   room:CreateRommPayload,
+}

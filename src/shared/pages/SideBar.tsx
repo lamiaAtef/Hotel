@@ -49,7 +49,7 @@ export default function SideBar({ isCollapsed, setIsCollapsed, onCloseDrawer }: 
           <MenuItem onClick={()=>handleMenuClose(false)}  component={<Link to="/admin-dashboard/facilites" />} icon={<AddCardIcon />} className={pathname === "/admin-dashboard/facilites" ? "active" : ""}>
             Facilites
           </MenuItem>
-          <MenuItem  component={<Link to="/change-pass" />} icon={<LockOutlineIcon />}>
+          <MenuItem  component={<Link to="/auth/change-pass" />} icon={<LockOutlineIcon />}>
             Change Password
           </MenuItem>
           <MenuItem icon={<LogoutIcon />} onClick={()=>handleMenuClose(true)}>

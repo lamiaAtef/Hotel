@@ -1,4 +1,4 @@
-import { Box, Grid, Stack, Typography } from '@mui/material';
+import { Box, Grid, Typography } from '@mui/material';
 import { PieChart, pieArcLabelClasses } from '@mui/x-charts/PieChart';
 
 type PieArcLabelProps = {

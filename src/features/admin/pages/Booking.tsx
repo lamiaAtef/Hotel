@@ -19,14 +19,14 @@ export default function Booking() {
     console.log("booking data in page", booking)
   }, [])
 
-    if (loading) {
-    return <div>Loading...</div>
-  }
+
   let handleViewDetails = (bookingId: string) => {
     fetchBookingDetails(bookingId)
     setviewModal(true)
     
   }
+   if(loading)  return <Stack sx={{display:"flex", justifyContent:"center", alignItems:"center", height:"50vh"}}><RiseLoader color="blue" /></Stack>
+  
   return (
     <>
        <SectionHeader title="Booking Table Details" subtitle="You can check all details"/>
@@ -44,13 +44,7 @@ export default function Booking() {
           </TableHead>
 
     <TableBody>
-      {loading ? (
-        <TableRow>
-          <TableCell colSpan={3} align="center">
-            <RiseLoader />
-          </TableCell>
-        </TableRow>
-      ) : booking.length > 0 ? (
+      {booking && booking.length > 0 ? (
         booking.map((row,index) => (
           <TableRow key={row._id} sx={{backgroundColor: index % 2 === 0 ? "#f5f5f5" : "white", // striped effect
           "&:hover": { backgroundColor: "#e0e0e0" }}}>
@@ -108,7 +102,7 @@ export default function Booking() {
     <Typography><strong>End Date:</strong> {bookingDetails?.endDate}</Typography>
     <Typography><strong>User Name:</strong> {bookingDetails?.user?.userName}</Typography>
     </Stack>
-   :<RiseLoader />}
+   :<RiseLoader  color="blue"/>}
 </CustomDialog>
 </>
   )

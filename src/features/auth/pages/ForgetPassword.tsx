@@ -35,7 +35,7 @@ export default function ForgetPassword() {
       toast.success(
         response?.data?.message || "Check your email to forget password"
       );
-      navigate("/auth/reset-password");
+      navigate("/auth/reset-pass");
   
     } catch (error: any) {
       toast.error(error.response?.data?.message || "Something went wrong");

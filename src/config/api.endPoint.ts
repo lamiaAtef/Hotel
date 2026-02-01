@@ -24,6 +24,13 @@ export const ADMIN_URLS = {
      GET_ALL_BOOKINGS : `/admin/booking`,
     GET_BOOKING_DETAILS : (bookingId:string) => `/admin/booking/${bookingId}`,
 }
+export const ADS_URLS = {
+    GET_ALL_ADS : `/admin/ads`,
+    CREATE_ADS:`/admin/ads`,
+    DELETE_ADS:(id:string)=>`/admin/ads/${id}`,
+    UPDATE_ADS:(id:string)=>`/admin/ads/${id}`,
+    GET_ADS_DETAILS:(id:string)=>`/admin/ads/${id}`,
+}
 export const USER_URLS = {
    
 }

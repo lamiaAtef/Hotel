@@ -9,12 +9,13 @@ import { useState } from "react";
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 import { IconButton, InputAdornment } from "@mui/material";
 import type { changePayload } from "../type";
+import { useNavigate } from "react-router-dom";
 
 export default function ChangePassword() {
     const [showPassword, setShowPassword] = useState<boolean>(false);
     const [showNewPassword, setShowNewPassword] = useState<boolean>(false);
     const [showConfirmPassword, setShowConfirmPassword] = useState<boolean>(false);
-
+    const navigate = useNavigate();
 
 
 
@@ -34,13 +35,15 @@ export default function ChangePassword() {
     const onSubmit = async (data: changePayload) => {
         try {
             const response = await axiosInstance.post(
-                AUTH_URLS.FORGET_PASSWORD,
+                AUTH_URLS.CHANGE_PASSWORD,
                 data
+
             );
 
             toast.success(
                 response?.data?.message || "password changed succeffully"
             );
+            navigate("/auth/login");
 
 
         } catch (error: any) {
