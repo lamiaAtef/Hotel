@@ -1,11 +1,12 @@
 import  React, { useEffect } from 'react'
 import { useBooking } from '../hooks/booking/useBooking'
 import { Paper, Stack, Table, TableBody, TableCell, TableContainer, TableHead, TableRow, Typography } from '@mui/material'
-import SectionHeader from '../shared/SectionHeader'
+
 import VisibilityOutlinedIcon from '@mui/icons-material/VisibilityOutlined';
 import {RiseLoader} from "react-spinners"
 import CustomDialog from '../components/CustomDialog';
 import { useBookingDetails } from '../hooks/booking/useBookingDetails';
+import SectionHeader from '../shared/SectionHeader';
 
 export default function Booking() {
   //view modal
