@@ -1,9 +1,9 @@
-import React from 'react'
+import AdsData from '../components/AdsData'
 
 export default function Home() {
   return (
-    <div>
-      home
-    </div>
+    <>
+      <AdsData/>
+    </>
   )
 }

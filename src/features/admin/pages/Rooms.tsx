@@ -25,7 +25,7 @@ import {
   Button,
   Typography,
 } from '@mui/material';
-import SectionHeader from '../Shared/SectionHeader';
+import SectionHeader from '../shared/SectionHeader';
 import { useNavigate } from 'react-router-dom';
 
 import ListItemIcon from '@mui/material/ListItemIcon';

@@ -26,6 +26,7 @@ import ChangePassword from "./features/auth/pages/ChangePassword";
 import AdminProtectedRoute from "./routes/AdminProtectedRoute";
 import Unauthorized from "./shared/pages/Unauthorized";
 import RoomData from "./features/admin/pages/RoomData";
+import Home from "./features/user/pages/Home";
 
 
 function App() {
@@ -68,7 +69,7 @@ const routes = createBrowserRouter(
         errorElement:<NotFound/>,
         children:[
           {index:true, element:<UserDashBoard/>},
-          {path:"home", element:<UserDashBoard/>},
+          {path:"home", element:<Home/>},
           
          
          
