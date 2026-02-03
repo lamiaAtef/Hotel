@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { ROOM_FACILITIES_URLS } from "../../../config/api.endPoint";
 import { axiosInstance } from "../../../services/httpClient";
-import SectionHeader from "../Shared/SectionHeader";
+import SectionHeader from "../shared/SectionHeader";
 import type { FacilityRow } from "../type";
 import { toast } from "react-toastify";
 
@@ -30,8 +30,8 @@ import {
 } from "@mui/material";
 import DeleteConfirm from "../components/DeleteConfirm";
 import {RiseLoader} from "react-spinners";
-import CustomDialog from "../Shared/CustomDialog";
-import CustomPagination from "../Shared/CustomPagination";
+import CustomDialog from "../shared/CustomDialog";
+import CustomPagination from "../shared/CustomPagination";
 
 export default function Facilities() {
   const [rows, setRows] = useState<FacilityRow[]>([]);

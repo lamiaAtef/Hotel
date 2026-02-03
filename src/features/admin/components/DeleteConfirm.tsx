@@ -9,9 +9,9 @@ import {
 } from "@mui/material";
 import CloseIcon from "@mui/icons-material/Close";
 import DeleteImg from "../../../assets/images/Email.png"
-import type {DeleteProps} from "../type";
+import type {DeleteConfirmProps} from "../type";
 
-export default function DeleteConfirm({open, title,onClose, onConfirm }:DeleteProps) {
+export default function DeleteConfirm({open, title,onClose, onConfirm }:DeleteConfirmProps) {
   // const [open, setOpen] = useState(false);
 
   return (

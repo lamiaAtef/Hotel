@@ -8,7 +8,7 @@ export interface SectionHeaderProps{
  export interface UploadFileImgProps{
   title:string;
  }
- export interface DeleteProps{ 
+ export interface DeleteConfirmProps{ 
   open: boolean;
   title?: string;
   onClose: ()=> void;

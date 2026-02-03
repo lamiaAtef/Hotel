@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react';
 import { USER_URLS } from '../../../config/api.endPoint';
 import { axiosInstance } from '../../../services/httpClient';
-import SectionHeader from '../Shared/SectionHeader';
+import SectionHeader from '../shared/SectionHeader';
 import Box from "@mui/material/Box";
 import {RiseLoader} from "react-spinners";
 
@@ -14,9 +14,9 @@ import type { User } from '../type';
 
 import VisibilityIcon from "@mui/icons-material/Visibility";
 import { Avatar } from "@mui/material";
-import CustomDialog from '../Shared/CustomDialog';
+import CustomDialog from '../shared/CustomDialog';
 import IconButton from "@mui/material/IconButton";
-import CustomPagination from '../Shared/CustomPagination';
+import CustomPagination from '../shared/CustomPagination';
 
 export default function Users() {
   const [usersList, setUsersList] = useState<User[]>([]);
