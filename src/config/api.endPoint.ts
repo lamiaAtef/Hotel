@@ -33,7 +33,8 @@ export const ADS_URLS = {
     GET_ADS_DETAILS:(id:string)=>`/admin/ads/${id}`,
 }
 export const USER_URLS = {
-    GET_ALL_USERS: `/admin/users`
+    GET_ALL_USERS: `/admin/users`,
+    GET_ALL_ADS:`/portal/ads`
    
 }
 
@@ -50,6 +51,7 @@ export const FAV_URLS = {
     DELETE_FAVOURITE_ROOM:`/portal/favorite-rooms`
 }
 
-export const axiosPublic = axios.create({
-  baseURL: import.meta.env.VITE_API_URL,
+
+export const  publicAxios = axios.create({
+  baseURL: "http://upskilling-egypt.com:3000/api/v0",
 });

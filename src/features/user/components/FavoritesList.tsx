@@ -42,10 +42,9 @@ export default function FavoritesPage() {
 const removeFavorite = async (roomId: string) => {
   try {
     await axiosInstance.delete(
-      FAV_URLS.DELETE_FAVOURITE_ROOM,
+      `${FAV_URLS.DELETE_FAVOURITE_ROOM}/${roomId}`, 
       {
-        params: { roomId },   // 👈 Query Param
-        data: { roomId },     // 👈 Body
+        data: { roomId }, 
       }
     );
 

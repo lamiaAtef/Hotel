@@ -1,12 +1,11 @@
 import { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { ADS_URLS, FAV_URLS } from "../../../config/api.endPoint";
-import { axiosInstance } from "../../../services/httpClient";
+import { ADS_URLS, FAV_URLS, publicAxios, USER_URLS } from "../../../config/api.endPoint";
 import { Box, Typography, IconButton } from "@mui/material";
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite'; 
 import VisibilityIcon from '@mui/icons-material/Visibility';
-import type { MyAdsPayload } from "../type";
+import {  type MyAdsPayload } from "../type";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../auth/context/AuthContext";
 
@@ -18,21 +17,23 @@ const userData = authContext?.userData;
     const [selectedId, setSelectedId] = useState<string | null>(null); 
     const navigate = useNavigate();
 
-    const getAllAds = async () => {
-        try {
-            const response = await axiosInstance.get(ADS_URLS.GET_ALL_ADS);
-            setAdsList(response.data.data.ads);
-        } catch (error) {
-            console.error(error);
-        }
-    }
+
+
+const getAllAds = async () => {
+  try {
+    const response = await publicAxios.get(USER_URLS.GET_ALL_ADS);
+    setAdsList(response.data.data.ads);
+  } catch (error) {
+    console.error(error);
+  }
+};
 
     useEffect(() => {
         getAllAds();
     }, [])
 
 const addToFavorite = (roomId: string) => {
-  // ❌ مش عامل Login
+ 
   if (!userData) {
     toast.info(
       <span>
