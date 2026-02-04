@@ -34,6 +34,7 @@ import VisibilityIcon from '@mui/icons-material/Visibility';
 import EditIcon from '@mui/icons-material/Edit';
 import DeleteIcon from '@mui/icons-material/Delete';
 import DeleteConfirm from '../components/DeleteConfirm';
+import CustomPagination from '../shared/CustomPagination';
 
 export default function Rooms() {
   const [rooms, setRooms] = useState<any[]>([]);
@@ -46,10 +47,13 @@ export default function Rooms() {
   const [openView, setOpenView] = useState(false);
   const [roomToView, setRoomToView] = useState<any>(null);
 
- 
   const [search, setSearch] = useState('');
   const [capacityFilter, setCapacityFilter] = useState('');
   const [discountFilter, setDiscountFilter] = useState('');
+
+  const [page, setPage] = useState(0);
+  const rowsPerPage = 10;
+  const [totalCount, setTotalCount] = useState(0);
 
   const navigate = useNavigate();
   const openMenu = Boolean(anchorEl);
@@ -70,9 +74,17 @@ export default function Rooms() {
   const getAllRooms = async () => {
     try {
       const response = await axiosInstance.get(
-        ADMIN_URLS.GETALLROOMS
+        ADMIN_URLS.GETALLROOMS,
+        {
+          params: {
+            page: page + 1,
+            size: rowsPerPage,
+          },
+        }
       );
+
       setRooms(response.data.data.rooms);
+      setTotalCount(response.data.data.totalCount);
     } catch (error: any) {
       toast.error(
         error.response?.data?.message ||
@@ -106,15 +118,13 @@ export default function Rooms() {
 
   useEffect(() => {
     getAllRooms();
-  }, []);
+  }, [page]);
 
-  
   const filteredRooms = rooms.filter((room) => {
-    const matchesSearch =
-      room.roomNumber
-    ?.toString()
-    .toLowerCase()
-        .includes(search.toLowerCase());
+    const matchesSearch = room.roomNumber
+      ?.toString()
+      .toLowerCase()
+      .includes(search.toLowerCase());
 
     const matchesCapacity = capacityFilter
       ? room.capacity === Number(capacityFilter)
@@ -150,21 +160,20 @@ export default function Rooms() {
           flexWrap: 'wrap',
         }}
       >
-       <TextField
-  placeholder="Search by room number"
-  size="small"
-  value={search}
-  onChange={(e) => setSearch(e.target.value)}
-  sx={{ width: 600 }}
-  InputProps={{
-    startAdornment: (
-      <InputAdornment position="start">
-        <SearchIcon  />
-      </InputAdornment>
-    ),
-  }}
-/>
-
+        <TextField
+          placeholder="Search by room number"
+          size="small"
+          value={search}
+          onChange={(e) => setSearch(e.target.value)}
+          sx={{ width: 600 }}
+          InputProps={{
+            startAdornment: (
+              <InputAdornment position="start">
+                <SearchIcon />
+              </InputAdornment>
+            ),
+          }}
+        />
 
         <TextField
           select
@@ -177,10 +186,9 @@ export default function Rooms() {
           sx={{ width: 150 }}
         >
           <MenuItem value="">All</MenuItem>
-          <MenuItem value="1">singel</MenuItem>
-          <MenuItem value="2">double</MenuItem>
-          <MenuItem value="3">sweet</MenuItem>
-          
+          <MenuItem value="1">Single</MenuItem>
+          <MenuItem value="2">Double</MenuItem>
+          <MenuItem value="3">Suite</MenuItem>
         </TextField>
 
         <TextField
@@ -200,7 +208,6 @@ export default function Rooms() {
         </TextField>
       </Box>
 
-      
       <Box sx={{ padding: '24px' }}>
         <TableContainer
           component={Paper}
@@ -208,40 +215,20 @@ export default function Rooms() {
         >
           <Table>
             <TableHead>
-              <TableRow
-                sx={{
-                  backgroundColor:
-                    'rgba(226, 229, 235, 1)',
-                }}
-              >
+              <TableRow sx={{ backgroundColor: '#E2E5EB' }}>
                 <TableCell sx={{ fontWeight: 'bold' }}>
                   Room Number
                 </TableCell>
-                <TableCell
-                  align="right"
-                  sx={{ fontWeight: 'bold' }}
-                >
+                <TableCell align="right" sx={{ fontWeight: 'bold' }}>
                   Image
                 </TableCell>
-                <TableCell
-                  align="right"
-                  sx={{ fontWeight: 'bold' }}
-                >
+                <TableCell align="right" sx={{ fontWeight: 'bold' }}>
                   Discount
                 </TableCell>
-                <TableCell
-                  align="right"
-                  sx={{ fontWeight: 'bold' }}
-                >
+                <TableCell align="right" sx={{ fontWeight: 'bold' }}>
                   Capacity
                 </TableCell>
-                <TableCell
-                  align="right"
-                  sx={{
-                    fontWeight: 'bold',
-                    width: '60px',
-                  }}
-                >
+                <TableCell align="right" sx={{ fontWeight: 'bold', width: 60 }}>
                   Action
                 </TableCell>
               </TableRow>
@@ -249,44 +236,36 @@ export default function Rooms() {
 
             <TableBody>
               {filteredRooms.map((room, index) => (
-                <>
-                {console.log("ROOM IMAGES:", room.images)}
                 <TableRow
                   key={room._id}
                   sx={{
                     backgroundColor:
                       index % 2 === 0
-                        ? 'rgba(248, 249, 251, 1)'
+                        ? '#F8F9FB'
                         : '#FFFFFF',
                   }}
                 >
-                  <TableCell>
-                    {room.roomNumber}
+                  <TableCell>{room.roomNumber}</TableCell>
+
+                  <TableCell align="right">
+                    {Array.isArray(room.images) &&
+                    room.images.length > 0 ? (
+                      <img
+                        src={room.images[0]}
+                        alt="room"
+                        width={50}
+                        height={40}
+                        style={{
+                          objectFit: 'cover',
+                          borderRadius: 4,
+                        }}
+                      />
+                    ) : (
+                      <Typography variant="caption">
+                        No Image
+                      </Typography>
+                    )}
                   </TableCell>
-
-<TableCell align="right">
-  {Array.isArray(room.images) && room.images.length > 0 ? (
-    <Box sx={{ display: 'flex', justifyContent: 'flex-end' }}>
-      <img
-        src={room.images?.[0]}
-        alt="room"
-        width={50}
-        height={40}
-        style={{
-          objectFit: 'cover',
-          borderRadius: '4px',
-        }}
-      />
-    </Box>
-  ) : (
-    <Typography variant="caption" color="text.secondary">
-      No Image
-    </Typography>
-  )}
-</TableCell>
-
-
-
 
                   <TableCell align="right">
                     {room.discount}%
@@ -298,23 +277,20 @@ export default function Rooms() {
 
                   <TableCell align="right">
                     <IconButton
-                      onClick={(event) =>
-                        handleMenuOpen(event, room)
+                      onClick={(e) =>
+                        handleMenuOpen(e, room)
                       }
                     >
                       <MoreVertIcon />
                     </IconButton>
                   </TableCell>
                 </TableRow>
-                 </>
               ))}
-             
             </TableBody>
           </Table>
         </TableContainer>
       </Box>
 
-     
       <Menu
         anchorEl={anchorEl}
         open={openMenu}
@@ -356,16 +332,12 @@ export default function Rooms() {
           sx={{ color: 'error.main' }}
         >
           <ListItemIcon>
-            <DeleteIcon
-              fontSize="small"
-              color="error"
-            />
+            <DeleteIcon fontSize="small" color="error" />
           </ListItemIcon>
           <ListItemText>Delete</ListItemText>
         </MenuItem>
       </Menu>
 
-     
       <Dialog
         open={openView}
         onClose={() => setOpenView(false)}
@@ -376,44 +348,32 @@ export default function Rooms() {
         <DialogContent dividers>
           {roomToView && (
             <>
-              <Typography gutterBottom>
+              <Typography>
                 <strong>Room Number:</strong>{' '}
                 {roomToView.roomNumber}
               </Typography>
-              <Typography gutterBottom>
+              <Typography>
                 <strong>Capacity:</strong>{' '}
                 {roomToView.capacity}
               </Typography>
-              <Typography gutterBottom>
+              <Typography>
                 <strong>Discount:</strong>{' '}
                 {roomToView.discount}%
               </Typography>
 
-              <Typography gutterBottom>
-                <strong>Images:</strong>
-              </Typography>
-
-              <Box
-                sx={{
-                  display: 'flex',
-                  gap: 1,
-                  flexWrap: 'wrap',
-                }}
-              >
+              <Box sx={{ display: 'flex', gap: 1, mt: 2 }}>
                 {roomToView.images?.map(
                   (img: string, index: number) => (
                     <img
                       key={index}
                       src={img}
-                      width="80"
-                      height="60"
+                      width={80}
+                      height={60}
                       style={{
-                        borderRadius: '6px',
+                        borderRadius: 6,
                         objectFit: 'cover',
                       }}
-                      
                     />
-                    
                   )
                 )}
               </Box>
@@ -431,7 +391,6 @@ export default function Rooms() {
         </DialogActions>
       </Dialog>
 
-     
       <DeleteConfirm
         open={openDelete}
         title={roomToDelete?.roomNumber}
@@ -440,6 +399,13 @@ export default function Rooms() {
           setRoomToDelete(null);
         }}
         onConfirm={handleDeleteRoom}
+      />
+
+      <CustomPagination
+        page={page}
+        rowsPerPage={rowsPerPage}
+        rowCount={totalCount}
+        onPageChange={(newPage) => setPage(newPage)}
       />
     </>
   );
