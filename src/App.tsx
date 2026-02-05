@@ -27,6 +27,7 @@ import AdminProtectedRoute from "./routes/AdminProtectedRoute";
 import Unauthorized from "./shared/pages/Unauthorized";
 import RoomData from "./features/admin/pages/RoomData";
 import Home from "./features/user/pages/Home";
+import FavoritesPage from "./features/user/components/FavoritesList";
 
 
 function App() {
@@ -70,6 +71,7 @@ const routes = createBrowserRouter(
         children:[
           {index:true, element:<UserDashBoard/>},
           {path:"home", element:<Home/>},
+          {path:"favorites", element:<FavoritesPage/>},
           
          
          

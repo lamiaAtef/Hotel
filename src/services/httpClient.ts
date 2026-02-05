@@ -3,7 +3,7 @@ import { baseURL } from '../config/api.endPoint'
 
 const axiosInstance=axios.create({
     baseURL:baseURL,
-    timeout:5000,
+    // timeout:5000,
 })
 // const axiosUserInstance=axios.create({
 //     baseURL:baseURL,
@@ -34,4 +34,4 @@ axiosInstance.interceptors.response.use(
     }
     
 )
-export  {axiosInstance, axiosUserInstance};
+export  {axiosInstance};
