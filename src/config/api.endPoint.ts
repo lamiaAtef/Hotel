@@ -52,6 +52,10 @@ export const FAV_URLS = {
     DELETE_FAVOURITE_ROOM:`/portal/favorite-rooms`
 }
 
+export const ROOM_URLS={
+    GET_ROOM_DETAILS:(id: string)=> `/portal/rooms/${id}`
+}
+
 export const  publicAxios = axios.create({
     baseURL: "https://upskilling-egypt.com:3000/api/v0",
   });

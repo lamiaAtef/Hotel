@@ -28,6 +28,7 @@ import Unauthorized from "./shared/pages/Unauthorized";
 import RoomData from "./features/admin/pages/RoomData";
 import Home from "./features/user/pages/Home";
 import FavoritesPage from "./features/user/components/FavoritesList";
+import RoomDetails from "./features/user/components/RoomDetails";
 
 
 function App() {
@@ -72,6 +73,7 @@ const routes = createBrowserRouter(
           {index:true, element:<UserDashBoard/>},
           {path:"home", element:<Home/>},
           {path:"favorites", element:<FavoritesPage/>},
+          {path:"room-details/:roomId",element:<RoomDetails/>}
           
          
          

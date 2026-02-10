@@ -117,7 +117,7 @@ const addToFavorite = async (roomId:string) => {
             </IconButton>
 
             <IconButton 
-                onClick={() => navigate(`/details/${adId}`)}
+                onClick={() => navigate(`/room-details/${roomId}`)}
                 sx={{ 
                     color: "white", 
                     transition: "all 0.3s ease-in-out",
