@@ -1,9 +1,13 @@
-import React from 'react'
+import Houses from '../components/Houses'
+import Hotels from '../components/Hotels'
+import RoomExplore from '../components/RoomExplore'
 
 export default function Home() {
   return (
-    <div>
-      home
-    </div>
+    <>
+      <RoomExplore/>
+      <Houses/>
+      <Hotels/>
+    </>
   )
 }

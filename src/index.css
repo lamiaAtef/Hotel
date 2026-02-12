@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
 /* SideBar */
 
  .ps-sidebar-container{
@@ -128,4 +130,52 @@ p {
   50% { transform: translateX(5px); }
   75% { transform: translateX(-5px); }
   100% { transform: translateX(5px); }
+}
+/* section title */
+/* .exploreTitle{
+  font-family: "Poppins", sans-serif;
+  font-weight: 700 !important;
+  font-style: Bold !important;
+  font-size: 42px !important;
+  color: #152C5B;
+
+
+
+} */
+
+.section_title{
+  font-size: 24px;
+  font-weight: 500;
+  margin-bottom: 10px !important;
+  color:  #152C5B;
+  font-family: "Poppins", sans-serif;
+
+}
+
+.card{
+  border:1px solid #E0E0E0;
+  border-radius:8px;  
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: .5s;
+  padding: 5px;
+  
+}
+.card:hover{
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transform: translateY(-5px);
+
+}
+.cardInExplore{
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  /* border-radius: 10px; */
+  padding: 0;
+  transition: .5s;
+}
+.cardInExplore:hover{
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.7);
+  transform: translateY(-5px)
+
+}
+.custom_width{
+  width:100%;
 }

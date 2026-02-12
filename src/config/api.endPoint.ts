@@ -32,7 +32,7 @@ export const ADS_URLS = {
     GET_ADS_DETAILS:(id:string)=>`/admin/ads/${id}`,
 }
 export const USER_URLS = {
-    GET_ALL_USERS: `/admin/users`
+    GET_ALL_USERS: `/admin/users`,
    
 }
 
@@ -42,5 +42,21 @@ export const ROOM_FACILITIES_URLS={
     UPDATE_FACILITY: (id:string)=> `/admin/room-facilities/${id}`,
     DELETE_FACILITY:(id:string)=> `/admin/room-facilities/${id}`,
     GET_DETAILS_FACILITY:(id:string)=> `/admin/room-facilities/${id}`
+}
+export const PORTAL_EXPLORE_ROOMS={
+    GET_EXPLORED_ROOM :(
+        page:number,
+        size:number,
+        startDate:string,
+        endDate:string
+    )=>`/portal/rooms/available?page=${page}&size=${size}&startDate=${startDate}&endDate=${endDate}`
+
+        // (page:number,
+        // size:number,
+        // startDate:string,
+        // endDate:string)=>`/portal/rooms/available?`,
+        // page=${page}&size=${size}&startDate=${startDate}&endDate=${endDate}
+
+        // )
 }
 

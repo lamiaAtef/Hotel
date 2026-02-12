@@ -85,6 +85,7 @@ export default function Facilities() {
   const [page, setPage] = useState(0); 
   const [rowsPerPage] = useState(10);
   const [totalCount, setTotalCount] = useState(0);
+  
 
   // getAllFacilities
     const getAllFacilities =async(pageNumber =0) =>{

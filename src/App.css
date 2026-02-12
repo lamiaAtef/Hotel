@@ -19,3 +19,14 @@
 .viewAction svg{
   color: var(--mainColor);
 }
+/* stepper */
+.css-3hpdci-MuiSvgIcon-root-MuiStepIcon-root{
+  color: #E5E5E5 !important;
+}
+.css-3hpdci-MuiSvgIcon-root-MuiStepIcon-root.Mui-completed {
+    color: #1ABC9C !important;
+
+}
+
+
+

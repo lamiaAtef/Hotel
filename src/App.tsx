@@ -13,7 +13,6 @@ import ResetPassword from "./features/auth/pages/ResetPassword";
 import AdminLayout from "./layouts/AdminLayout";
 import MainLayout from "./layouts/MainLayout";
 import AdminDashBoard from "./features/admin/pages/AdminDashBoard";
-import UserDashBoard from "./features/user/pages/UserDashBoard";
 import AuthContextProvider from "./features/auth/context/AuthContext";
 import { ToastContainer} from 'react-toastify';
 // import RoomFacilities from "./features/admin/pages/RoomFacilities";
@@ -26,6 +25,9 @@ import ChangePassword from "./features/auth/pages/ChangePassword";
 import AdminProtectedRoute from "./routes/AdminProtectedRoute";
 import Unauthorized from "./shared/pages/Unauthorized";
 import RoomData from "./features/admin/pages/RoomData";
+import Home from "./features/user/pages/Home";
+import ExploreRoom from "./features/user/pages/ExploreRoom";
+import PaymentPage from "./features/user/pages/PaymentPage";
 
 
 function App() {
@@ -67,11 +69,13 @@ const routes = createBrowserRouter(
         element:<MainLayout/>,
         errorElement:<NotFound/>,
         children:[
-          {index:true, element:<UserDashBoard/>},
-          {path:"home", element:<UserDashBoard/>},
-          
-         
-         
+          {index:true, element:<Home/>},
+          {path:"home", element:<Home/>},
+          {path:"explore-room",element:<ExploreRoom/>},
+          {path:"hotel-payment",element:<PaymentPage/>}
+          // {path:"explore-room/:id",element:<ExploreRoom/>},
+
+             
         ]
       },
 
