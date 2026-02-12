@@ -7,6 +7,12 @@
 :root{
   --bgColor: #203FC7;
   --mainColor:#203FC7;
+  --textGray: #B0B0B0;
+}
+
+.textGray{
+  color: var(--textGray);
+
 }
 
 .btnAdmin{
@@ -29,4 +35,18 @@
 }
 
 
+
+.mySwiper.swiper-horizontal{
+  margin: 5px 20px;
+}
+.mySwiper .swiper-pagination-bullet{
+  width: 12px;
+  height: 12px;
+  background-color: #ccc;
+  opacity: 1;
+}
+
+.mySwiper .swiper-pagination-bullet-active{
+  background-color: rgb(226, 68, 100);
+}
 

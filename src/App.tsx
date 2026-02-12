@@ -28,6 +28,9 @@ import RoomData from "./features/admin/pages/RoomData";
 import Home from "./features/user/pages/Home";
 import ExploreRoom from "./features/user/pages/ExploreRoom";
 import PaymentPage from "./features/user/pages/PaymentPage";
+import Home from "./features/user/pages/Home";
+import FavoritesPage from "./features/user/components/FavoritesList";
+import RoomDetails from "./features/user/components/RoomDetails";
 
 
 function App() {
@@ -71,11 +74,14 @@ const routes = createBrowserRouter(
         children:[
           {index:true, element:<Home/>},
           {path:"home", element:<Home/>},
-          {path:"explore-room",element:<ExploreRoom/>},
+          {path:"favorites", element:<FavoritesPage/>},
+          {path:"room-details/:roomId",element:<RoomDetails/>},
+           {path:"explore-room",element:<ExploreRoom/>},
           {path:"hotel-payment",element:<PaymentPage/>}
-          // {path:"explore-room/:id",element:<ExploreRoom/>},
 
-             
+          
+         
+         
         ]
       },
 
