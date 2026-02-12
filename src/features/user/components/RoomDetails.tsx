@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react"
 import { ROOM_URLS, publicAxios} from "../../../config/api.endPoint";
-import type { MyRoomData } from "../type";
-import { useParams } from "react-router-dom";
-import { Box, Grid, Stack, Typography } from "@mui/material";
+import type { ExploreRoomFormValues, MyRoomData } from "../type";
+import { useNavigate, useParams } from "react-router-dom";
+import { Box, Button, Grid, Stack, Typography } from "@mui/material";
 
 import imgFacility1 from "../../../assets/images/roomDetails/ic_bedroom.png";
 import imgFacility2 from "../../../assets/images/roomDetails/ic_bathroom.png";
@@ -12,12 +12,39 @@ import imgFacility5 from "../../../assets/images/roomDetails/ic_wifi.png";
 import imgFacility6 from "../../../assets/images/roomDetails/ic_ac.png";
 import imgFacility7 from "../../../assets/images/roomDetails/ic_ref.png";
 import imgFacility8 from "../../../assets/images/roomDetails/ic_tv.png";
+import { Controller, useForm } from "react-hook-form";
+import DateRangePicker from "@wojtekmaj/react-daterange-picker";
+import NumberSpinner from "./NumberSpinner";
+import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+
 
 
 export default function RoomDetails() {
 
   const [roomdetails, setRoomDetails] = useState<MyRoomData | null>(null);
+  const navigate = useNavigate()
+  
   const {roomId} = useParams();
+    const {
+    control,
+    handleSubmit,
+    formState:{errors},
+    
+  } = useForm<ExploreRoomFormValues>({})
+  
+    let onSubmit = (data:any) => {
+       const [start, end] = data.dateRange;     
+       const payload = {
+        page : 1 ,
+        size : 9,
+        startDate: start.toISOString().split("T")[0],
+        endDate: end.toISOString().split("T")[0],
+      };
+  
+    console.log(payload,"payload");
+    navigate(`/explore-room?page=${payload.page}&size=${payload.size}&startDate=${payload.startDate}&endDate=${payload.endDate}` )
+    
+  }
 
 
    const getRoomDetails =async()=>{
@@ -112,15 +139,10 @@ export default function RoomDetails() {
                 <Typography variant="body1" className="textGray">7 unit ready</Typography>
               </Stack>
 
-              <Stack spacing={1}>
-                <Box component="img" src={imgFacility7} sx={{width:"50px",height:"50px"}} alt="facility image"/>
-                <Typography variant="body1" className="textGray">2 refigrator</Typography>
-              </Stack>
+             
 
-              <Stack spacing={1}>
-                <Box component="img" src={imgFacility8} sx={{width:"50px",height:"50px"}} alt="facility image"/>
-                <Typography variant="body1" className="textGray">4 television</Typography>
-              </Stack>
+              
+              
             </Stack>
             </Grid>
 
@@ -133,8 +155,53 @@ export default function RoomDetails() {
                 <Typography variant="h4" color="textDisabled">per night</Typography>
               </Stack>
               <Typography variant="h6" color="error"> Discount {roomdetails?.discount} % off</Typography>
+             <Box component="form" onSubmit={handleSubmit(onSubmit)} >
+                   <Typography className='section_title'>Pick a Date</Typography>
+                    <Box sx={{width:"50%",display:"flex"}}>
+                         {/* <DateRangePicker minDate={dayjs()} onChange={onChange} value={value} />
+                          */}
+                          <Typography variant='caption' sx={{background: "#152C5B",color:"#fff",display:"inline-block",height:"auto",padding:"8px"}}>
+                            <CalendarMonthIcon/>
+                          </Typography>
+                      <Controller
+                          name="dateRange"
+                          control={control}
+                          
+                          rules={{
+                            required: "Date range is required",
+                          
+                          }}
+                       render={({ field }) => (
+                        <DateRangePicker
+                          {...field}
+                          minDate={new Date()}
+                          onChange={field.onChange}
+                          value={field.value}
+                          className="custom_width"
+                          
+                      />
+                      )}
+                    />
+                    {errors.dateRange && (
+                      <Typography color="error" variant="body2">
+                        {errors.dateRange.message}
+                      </Typography>
+                    )}
+                  </Box>
+                {/* end date controller */}
+
+                    
+                   
+
+                    <Button type="submit" variant="contained" sx={{width:"25%",display:"inline-block",marginBlock:"10px"}}>Continue Book</Button> 
+
+
+
+                </Box>
             </Grid>
+            
           </Grid>
+         
 
       </Box>
     </>

@@ -102,8 +102,12 @@ export default function NavBar({onMenuClick}:any) {
       open={isMenuOpen}
       onClose={handleMenuClose}
     >
-      <MenuItem onClick={()=>handleMenuClose("")}>Profile</MenuItem>
-      <MenuItem onClick={()=>handleMenuClose("logoutUser")}>Log Out</MenuItem>
+     <MenuItem >
+                  <Typography sx={{ textAlign: 'center' }}>profile</Typography>
+                </MenuItem>
+                  <MenuItem  onClick={logoutUser}>
+                  <Typography sx={{ textAlign: 'center' }}>logout</Typography>
+                </MenuItem>
     </Menu>
   );
 

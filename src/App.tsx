@@ -28,7 +28,6 @@ import RoomData from "./features/admin/pages/RoomData";
 import Home from "./features/user/pages/Home";
 import ExploreRoom from "./features/user/pages/ExploreRoom";
 import PaymentPage from "./features/user/pages/PaymentPage";
-import Home from "./features/user/pages/Home";
 import FavoritesPage from "./features/user/components/FavoritesList";
 import RoomDetails from "./features/user/components/RoomDetails";
 

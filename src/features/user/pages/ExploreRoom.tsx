@@ -3,6 +3,7 @@ import { useExplore } from '../hooks/useExplore';
 import { useEffect, useState } from 'react';
 import altImage from "../../../assets/images/explore/exploreImg.png"
 import CustomPagination from '../../admin/shared/CustomPagination';
+import { useSearchParams } from 'react-router-dom';
 
 export default function ExploreRoom() {
     // const location = useLocation();
