@@ -1,8 +1,6 @@
-import { Box, Grid, Paper, Stack, Typography } from '@mui/material';
-import { useLocation, useSearchParams } from 'react-router-dom'
+import { Box, Grid, Typography } from '@mui/material';
 import { useExplore } from '../hooks/useExplore';
 import { useEffect, useState } from 'react';
-import { RiseLoader } from 'react-spinners';
 import altImage from "../../../assets/images/explore/exploreImg.png"
 import CustomPagination from '../../admin/shared/CustomPagination';
 
@@ -23,7 +21,7 @@ export default function ExploreRoom() {
 
 
 
-    const {fetchAllExplored,loading,exploredRoom,totalCount} = useExplore();
+    const {fetchAllExplored,exploredRoom,totalCount} = useExplore();
 
     useEffect(()=>{
         if (!startDate || !endDate) return;
