@@ -34,7 +34,8 @@ export const ADS_URLS = {
 }
 export const USER_URLS = {
     GET_ALL_USERS: `/admin/users`,
-    GET_ALL_ADS:`/portal/ads`
+    GET_ALL_ADS:`/portal/ads`,
+    POST_BOOKING : `/portal/booking`
    
 }
 
@@ -72,6 +73,9 @@ export const ROOM_URLS={
     GET_ROOM_DETAILS:(id: string)=> `/portal/rooms/${id}`
 }
 
+export const REVIEWS_URL={
+    GET_ALL_REVIEWES:`/portal/room-reviews/68a7c33dccc448ef85a1e2a6`,
+}
 export const  publicAxios = axios.create({
     baseURL: "https://upskilling-egypt.com:3000/api/v0",
   });

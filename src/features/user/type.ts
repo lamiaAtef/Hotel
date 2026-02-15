@@ -55,3 +55,9 @@ export interface MyRoomData {
     isActive: boolean;
     room: MyRoomData;
   }
+export interface bookingPayload{
+  startDate : string;
+  endDate : string,
+  room : string,
+  totalPrice : number,
+}

@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
-import { ROOM_URLS, publicAxios} from "../../../config/api.endPoint";
-import type { ExploreRoomFormValues, MyRoomData } from "../type";
+import { ROOM_URLS, USER_URLS, publicAxios} from "../../../config/api.endPoint";
+import type { bookingPayload, ExploreRoomFormValues, MyRoomData } from "../type";
 import { useNavigate, useParams } from "react-router-dom";
 import { Box, Button, Grid, Stack, Typography } from "@mui/material";
 
@@ -14,14 +14,15 @@ import imgFacility7 from "../../../assets/images/roomDetails/ic_ref.png";
 import imgFacility8 from "../../../assets/images/roomDetails/ic_tv.png";
 import { Controller, useForm } from "react-hook-form";
 import DateRangePicker from "@wojtekmaj/react-daterange-picker";
-import NumberSpinner from "./NumberSpinner";
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
+import UserServices from "../services/userService";
 
 
 
 export default function RoomDetails() {
 
   const [roomdetails, setRoomDetails] = useState<MyRoomData | null>(null);
+  
   const navigate = useNavigate()
   
   const {roomId} = useParams();
@@ -33,17 +34,44 @@ export default function RoomDetails() {
   } = useForm<ExploreRoomFormValues>({})
   
     let onSubmit = (data:any) => {
-       const [start, end] = data.dateRange;     
+       const [start, end] = data.dateRange; 
+        let price = roomdetails?.price || 100;
+
+       
+      
+       let startDate= start.toISOString().split("T")[0];
+       let endDate =  end.toISOString().split("T")[0];
+        let days_number =  Math.ceil((end - start) / (1000 * 60 * 60 * 24));
+
+       console.log(days_number,"days_number")
+
        const payload = {
-        page : 1 ,
-        size : 9,
-        startDate: start.toISOString().split("T")[0],
-        endDate: end.toISOString().split("T")[0],
+        startDate: startDate,
+        endDate: endDate,
+        room :roomdetails?._id, 
+        totalPrice : (price * days_number) * ((roomdetails?.discount || 20)/100),
+       
       };
+      
+     
   
     console.log(payload,"payload");
-    navigate(`/explore-room?page=${payload.page}&size=${payload.size}&startDate=${payload.startDate}&endDate=${payload.endDate}` )
+    createBooking(payload);
     
+  }
+
+  let createBooking = async(data:bookingPayload) => {
+     try{
+      let response = await UserServices.booking(data)
+      console.log(response,"response")
+      // المفروض تقريبا ابعته للصفحه التاليه 
+      navigate(`/hotel-booking?roomId=${roomId}&startDate=${data.startDate}&endDate=${data.endDate}&price=${ roomdetails?.price }&discount=${roomdetails?.discount}&totalPrice=${data.totalPrice}`,{state:{bookingId:  response.data.data.booking._id}} )
+
+    }
+    catch(error)
+    {
+      console.log(error)
+    }
   }
 
 
@@ -193,7 +221,7 @@ export default function RoomDetails() {
                     
                    
 
-                    <Button type="submit" variant="contained" sx={{width:"25%",display:"inline-block",marginBlock:"10px"}}>Continue Book</Button> 
+                    <Button type="submit" variant="contained" sx={{width:"50%",display:"inline-block",marginBlock:"20px"}}>Continue Book</Button> 
 
 
 
