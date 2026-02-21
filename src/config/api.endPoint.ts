@@ -33,7 +33,7 @@ export const ADS_URLS = {
 }
 export const USER_URLS = {
     GET_ALL_USERS: `/admin/users`
-   
+
 }
 
 export const ROOM_FACILITIES_URLS={
@@ -43,4 +43,15 @@ export const ROOM_FACILITIES_URLS={
     DELETE_FACILITY:(id:string)=> `/admin/room-facilities/${id}`,
     GET_DETAILS_FACILITY:(id:string)=> `/admin/room-facilities/${id}`
 }
+export const FAVOURITES_URL={
+    GET_MY_FAV_ROOMS:`/portal/favorite-rooms`,
+    ADD_TO_FAV:`/portal/favorite-rooms`,
+    DELET_FAV:(id:string)=>`/portal/favorite-rooms/${id}`
 
+}
+export const REVIEWS_URL={
+    GET_ALL_REVIEWES:`/portal/room-reviews/68a7c33dccc448ef85a1e2a6`,
+}
+export const ROOM_URL={
+    GET_ROOM_DETAILS:(id:string)=>`/api/v0/admin/rooms/${id}`
+}

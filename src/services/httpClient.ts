@@ -3,7 +3,7 @@ import { baseURL } from '../config/api.endPoint'
 
 const axiosInstance=axios.create({
     baseURL:baseURL,
-    timeout:5000,
+
 })
 // const axiosUserInstance=axios.create({
 //     baseURL:baseURL,
@@ -29,9 +29,9 @@ axiosInstance.interceptors.response.use(
 
         }
          return Promise.reject(error);
- 
-        
+
+
     }
-    
+
 )
 export  {axiosInstance, axiosUserInstance};

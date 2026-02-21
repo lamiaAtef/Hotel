@@ -20,7 +20,7 @@ import { useAuth } from '../../features/auth/hooks/useAuth';
 const Search = styled('div')(({ theme }) => ({
   position: 'relative',
   borderRadius: theme.shape.borderRadius,
-  
+
   marginRight: theme.spacing(2),
   marginLeft: 0,
   width: '100%',
@@ -58,8 +58,8 @@ export default function NavBar({onMenuClick}:any) {
   const logoutUser = useLogout()
   const {userData} = useAuth();
   console.log(userData,"userData")
-  
-  
+
+
   const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
   // const [mobileMoreAnchorEl, setMobileMoreAnchorEl] =
   // React.useState<null | HTMLElement>(null);
@@ -107,7 +107,7 @@ export default function NavBar({onMenuClick}:any) {
     </Menu>
   );
 
- 
+
 
   return (
     <Box sx={{ flexGrow: 1,paddingBlock:"32px"}}>
@@ -118,7 +118,7 @@ export default function NavBar({onMenuClick}:any) {
             borderRadius: "16px",
             color: "#1f384C",
             top: 0,
-            
+
           }}
         >
         <Toolbar>
@@ -131,7 +131,7 @@ export default function NavBar({onMenuClick}:any) {
             onClick={onMenuClick}>
             <MenuIcon />
           </IconButton>
-         
+
           <Search   sx={{borderRadius:"15px" ,
                     backgroundColor:"#fff",
                     height:"30px",
@@ -146,7 +146,7 @@ export default function NavBar({onMenuClick}:any) {
             <StyledInputBase
               placeholder="Search…"
               inputProps={{ 'aria-label': 'search' }}
-            
+
             />
           </Search>
           <Box sx={{ flexGrow: 1 }} />
@@ -176,9 +176,9 @@ export default function NavBar({onMenuClick}:any) {
                 <NotificationsIcon />
               </Badge>
             </IconButton>
-           
+
           </Box>
-        
+
         </Toolbar>
       </AppBar>
       {renderMenu}

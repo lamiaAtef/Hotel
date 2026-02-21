@@ -154,7 +154,7 @@ export default function Ads() {
        discount: Number(data.discount),
       isActive: data.isActive === "true",
       }
-      
+
     }
     else{
         payload = {
@@ -163,7 +163,7 @@ export default function Ads() {
       isActive: data.isActive === "true",
     };
     }
-   
+
 
     try {
       if (adsUpdate) {
@@ -308,7 +308,7 @@ export default function Ads() {
             </TableHead>
 
             <TableBody>
-             
+
               {adsList.map((ad) => (
                 <TableRow key={ad._id}>
                   <TableCell>{ad.room.roomNumber}</TableCell>

@@ -26,6 +26,12 @@ import ChangePassword from "./features/auth/pages/ChangePassword";
 import AdminProtectedRoute from "./routes/AdminProtectedRoute";
 import Unauthorized from "./shared/pages/Unauthorized";
 import RoomData from "./features/admin/pages/RoomData";
+import Explore from "./features/user/pages/Explore";
+import Reviews from "./features/user/pages/Reviews";
+
+import Favourites from "./features/user/pages/Favourites";
+import RoomDetails from "./features/user/components/RoomDetails/RoomDetails/RoomDetails";
+import CheckOutForm from "./features/user/components/CheckoutForm/CheckOutForm";
 
 
 function App() {
@@ -59,21 +65,23 @@ const routes = createBrowserRouter(
           {path:"addRoom/:id" ,element:<RoomData /> },
           {path:"users", element:<Users/>},
           {path:"booking", element:<Booking/>}
-         
+
         ]
       },
-       {
-        path:"",
-        element:<MainLayout/>,
-        errorElement:<NotFound/>,
-        children:[
-          {index:true, element:<UserDashBoard/>},
-          {path:"home", element:<UserDashBoard/>},
-          
-         
-         
-        ]
-      },
+    {
+  path: "",
+  element: <MainLayout />,
+  errorElement: <NotFound />,
+  children: [
+    { index: true, element: <UserDashBoard /> },
+     { path: "home", element: <UserDashBoard /> },
+    { path: "explore", element: <Explore /> },
+    { path: "reviews", element: <Reviews /> },
+    { path: "favourites", element: <Favourites /> },
+        { path: "room_details/:id", element: <RoomDetails/>},
+          { path: "payment", element: <CheckOutForm/>},
+  ]
+}
 
     ]
   )

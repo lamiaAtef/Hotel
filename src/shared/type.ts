@@ -10,3 +10,10 @@ export interface NavBarProps {
   isCollapsed: boolean;
   setIsCollapsed: (val: boolean) => void;
 }
+export interface ReviewInterface{
+  _id:string;
+  rating:number;
+  review:string;
+
+
+}
