@@ -2,6 +2,7 @@ import loginImg from "../assets/images/Auth_Img/login.png";
 import registerImg from "../assets/images/Auth_Img/register.png";
 import forgetImg from "../assets/images/Auth_Img/forget.png";
 import resetImg from "../assets/images/Auth_Img/reset.png";
+import changeImg from "../assets/images/Auth_Img/change.jpeg";
 
 import { Outlet, useLocation } from "react-router-dom";
 import Grid from "@mui/material/Grid";
@@ -10,13 +11,14 @@ import Logo from "../shared/components/Logo/Logo";
 
 
 export default function AuthLayout() {
-  const { pathname } = useLocation();
+  const  { pathname }  = useLocation();
 
   const authImages: Record<string, string> = {
     login: loginImg,
     register: registerImg,
     forget: forgetImg,
     reset: resetImg,
+    change: changeImg,
   };
 
   const key =
@@ -29,7 +31,7 @@ export default function AuthLayout() {
          <Outlet />
       </Grid>
 
-      <Grid size={{xs:0 , md:6 }} 
+      <Grid size={{xs:0 , md:6}} 
               sx={{
               minHeight:"100%" ,
               backgroundImage:`url(${authImages[key]})`,

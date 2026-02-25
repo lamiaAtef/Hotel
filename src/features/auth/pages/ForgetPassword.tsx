@@ -1,5 +1,4 @@
 import { useForm } from "react-hook-form";
-import { useNavigate } from "react-router-dom";
 import type { ForgetPayload } from "../type";
 import { axiosInstance } from "../../../services/httpClient";
 import { AUTH_URLS } from "../../../config/api.endPoint";
@@ -13,12 +12,12 @@ import {
 } from "@mui/material";
 import { EMAIL_VALIDATION } from "../validation/validation";
 import AuthHeader from "../shared/AuthHeader";
-import { useContext, useEffect } from "react";
-import { AuthContext } from "../context/AuthContext";
+import { useNavigate } from "react-router-dom";
+
 
 export default function ForgetPassword() {
   const navigate = useNavigate();
- const authContext = useContext(AuthContext);
+//  const authContext = useContext(AuthContext);
 
   const {
     register,
@@ -37,16 +36,14 @@ export default function ForgetPassword() {
         response?.data?.message || "Check your email to forget password"
       );
 
+      navigate('/auth/reset-pass', {state: {email: data.email}});
+
   
     } catch (error: any) {
       toast.error(error.response?.data?.message || "Something went wrong");
     }
   };
-useEffect(() => {
-  if (authContext?.userData) {
-    navigate("/login");
-  }
-}, [authContext?.userData]);
+
 
   return (
     <>

@@ -42,7 +42,7 @@ const registerdata=appendToFormData(data);
 try {
   const response= await  axios.post(`${baseURL}${AUTH_URLS.REGISTER}`,registerdata);
   toast.success(response?.data?.message);
-  navigate("/login");
+  navigate("/auth/login");
 
 
 } catch (error:unknown) {
@@ -92,7 +92,7 @@ else{
 
             />
 <Stack direction="row" spacing={2}>
-  <TextField  type="number" label="phoneNumber"
+  <TextField  type="text" label="phoneNumber"
     sx={{
               "& .MuiOutlinedInput-root": {
                 backgroundColor: "#F5F6F8",

@@ -3,12 +3,9 @@ import { baseURL } from '../config/api.endPoint'
 
 const axiosInstance=axios.create({
     baseURL:baseURL,
-    timeout:5000,
+    // timeout:15000,
 })
-// const axiosUserInstance=axios.create({
-//     baseURL:baseURL,
-//     timeout:5000,
-// })
+
 axiosInstance.interceptors.request.use(
     (config)=>{
         const token =localStorage.getItem('userToken')
@@ -34,4 +31,4 @@ axiosInstance.interceptors.response.use(
     }
     
 )
-export  {axiosInstance, axiosUserInstance};
+export  {axiosInstance};
