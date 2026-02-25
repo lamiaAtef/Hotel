@@ -1,6 +1,6 @@
 import React from 'react'
 import type { BorderShape, ImageSideProps } from '../type'
-import { Box } from '@mui/material'
+import { Box, Fade, Slide, Zoom } from '@mui/material'
 
 export default function ImageSide({imageName,xPosition,yPosition,borderShape}:ImageSideProps) {
  
@@ -19,6 +19,7 @@ export default function ImageSide({imageName,xPosition,yPosition,borderShape}:Im
 
     return (
     <>
+     <Zoom  in={true} timeout={800}>
         <Box sx={{
             position:"relative",
             border: "2px solid #E5E5E5",
@@ -32,6 +33,8 @@ export default function ImageSide({imageName,xPosition,yPosition,borderShape}:Im
 
 
         }}>
+       
+            
             <Box 
                 component="img"
                 src = {imageName}
@@ -53,8 +56,10 @@ export default function ImageSide({imageName,xPosition,yPosition,borderShape}:Im
 
             
             />
+           
 
         </Box>
+         </Zoom>
       
     </>
   )

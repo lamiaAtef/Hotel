@@ -80,3 +80,8 @@ export const  publicAxios = axios.create({
     baseURL: "https://upskilling-egypt.com:3000/api/v0",
   });
 
+  export const BOOKING = {
+        PAY_BOOKING : (id:string)=> `/portal/booking/${id}/pay`,
+
+  }
+

@@ -6,6 +6,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
+import altImage from "../../../assets/images/altRoomImg.png"
 
 // Import Swiper styles
 import 'swiper/css';
@@ -77,8 +78,8 @@ export default function AdsSlider() {
             <Card sx={{  width:"100%" ,border:"none", boxShadow:"none",marginBottom:"5px" }}>
                 <CardMedia
                     sx={{ height: 180 }}
-                    image={ads.room.images[0]}
-                    title="room image"   
+                    image={ads.room.images[0] || altImage}
+                    title={ads.room.roomNumber }  
                 />
                 <CardContent>
                     <Typography variant="h6">

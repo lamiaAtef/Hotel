@@ -1,12 +1,13 @@
 import { Grid, Stack, Typography } from '@mui/material'
 import HotelStepper from '../components/HotelStepper'
-import { useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom'
+import { Navigate, useLocation, useNavigate, useParams, useSearchParams } from 'react-router-dom'
 import { Elements } from '@stripe/react-stripe-js';
 import StripeProvider, { stripePromise } from '../components/payment/StripeProvider';
 import { useEffect } from 'react';
 import PaymentElementForm from '../components/payment/PaymentElementForm';
 import { toast } from 'react-toastify';
 import CheckOutForm from '../components/payment/CheckOutForm';
+import { useAuth } from '../../auth/hooks/useAuth';
 // import PaymentElementForm from '../components/payment/PaymentElementForm';
 // import { Elements } from '@stripe/react-stripe-js';
 // import { stripePromise } from '../components/payment/StripeProvider';
@@ -23,11 +24,10 @@ export default function PaymentPage() {
 const location = useLocation();
 const bookingId = location.state?.bookingId;
 let navigate = useNavigate()
+const { userData } = useAuth();
 
-useEffect(()=>{
-  // if (!total) return
+if (userData && userData?.role !== "user") return <Navigate to="/notFound" />; 
 
-},[])
 
   return (
     <>
@@ -37,7 +37,7 @@ useEffect(()=>{
         <Typography variant='body1' sx={{color: "#B0B0B0"}}>Kindly follow the instructions below</Typography>
       </Stack>
       <Grid container sx={{marginBlock:"50px"}}>
-        <Grid size={{md:6 , sm:12}}>
+        <Grid size={{xs:12,md:12 , lg:6}}>
             <Typography variant='body1' sx={{marginBlock:"10px"}}>room Id : {roomId}</Typography>
             <Typography variant='body1' sx={{marginBlock:"10px"}}>start Date :  {startDate}</Typography>
             <Typography variant='body1' sx={{marginBlock:"10px"}}>end Date : {endDate}</Typography>
@@ -50,7 +50,7 @@ useEffect(()=>{
               </Typography>
             </Typography>
         </Grid>
-        <Grid size={{md: 6, sm:12}}>
+        <Grid size={{xs:12,md:12, lg:6}}>
             <Elements stripe={stripePromise}>
               <CheckOutForm  bookingId={bookingId}/>
             </Elements>

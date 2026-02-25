@@ -4,7 +4,7 @@ import hotel_1 from "../../../assets/images/userLanding_hotels/hotel1.png"
 import hotel_2 from "../../../assets/images/userLanding_hotels/hotel2.png"
 import hotel_3 from "../../../assets/images/userLanding_hotels/hotel3.png"
 import hotel_4 from "../../../assets/images/userLanding_hotels/hotel4.png"
-import { Stack } from "@mui/material"
+import { Fade, Stack } from "@mui/material"
 
 
 export default function Hotels() {
@@ -38,9 +38,11 @@ export default function Hotels() {
     ]
   return (
     <>
-    <Stack sx={{marginBottom:"50px"}}>
-       <Slider cards={hotels} title="Hotels with large living room"/>
-    </Stack>
+      <Fade in={true} timeout={5000}>
+        <Stack sx={{marginBottom:"50px"}}>
+        <Slider cards={hotels} title="Hotels with large living room"/>
+        </Stack>
+    </Fade>
     </>
   )
 }

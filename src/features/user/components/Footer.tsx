@@ -7,9 +7,9 @@ export default function Footer() {
    <Container>
        <Grid container
        spacing={2}
-       sx={{textAlign:{xs:"center",md:"left"}}}
+       sx={{textAlign:{xs:"center",md:"left"},mt:"40px"}}
       >
-   <Grid size={{xs:12,md:3}}>
+   <Grid size={{xs:12,md:3,sm:6}}>
     <Typography variant="h6"  sx={{mb:"5px"}}>
       <span style={{color:"black"}}>Stay</span><span style={{color:" rgba(32, 63, 199, 1)"}}>cation</span>
     </Typography>
@@ -18,7 +18,7 @@ export default function Footer() {
 instantly and memorable.
     </Typography>
    </Grid>
-   <Grid size={{xs:12,md:3}}>
+   <Grid size={{xs:12,md:3,sm:6}}>
     <Typography variant="h6"  sx={{mb:"5px",color:"rgba(21, 44, 91, 1)"}}>
   For Beginners
     </Typography>
@@ -31,7 +31,7 @@ Use Payments
     </Typography>
 
    </Grid>
-     <Grid size={{xs:12,md:3}}>
+     <Grid size={{xs:12,md:3,sm:6}}>
     <Typography variant="h6"  sx={{mb:"5px",color:"rgba(21, 44, 91, 1)"}}>
 Explore Us
     </Typography>
@@ -44,7 +44,7 @@ Terms & Conditions
     </Typography>
 
    </Grid>
-      <Grid size={{xs:12,md:3}}>
+      <Grid size={{xs:12,md:3,sm:6}}>
     <Typography variant="h6"  sx={{mb:"5px",color:"rgba(21, 44, 91, 1)"}}>
 Connect Us
     </Typography>

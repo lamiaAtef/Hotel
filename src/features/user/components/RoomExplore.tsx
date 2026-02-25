@@ -1,4 +1,4 @@
-import { Box, Button, Grid, Stack, Typography } from '@mui/material'
+import { Box, Button, Fade, Grid, Slide, Stack, Typography, Zoom } from '@mui/material'
 import ImageSide from './ImageSide'
 import roomExploreImg from "../../../assets/images/explore/exploreImg.png"
 import DateRangePicker from '@wojtekmaj/react-daterange-picker';
@@ -37,8 +37,10 @@ export default function RoomExplore() {
 
   return (
     <>
-      <Grid container sx={{marginBlock:"70px"}}>
+      <Grid container sx={{marginBlock:"50px"}}>
         <Grid size={{md:8, sm:12,xs:12}} >
+          <Slide direction="down" in={true} timeout={800}>
+
             <Typography  sx={{
                 fontFamily: "Poppins sans-serif",
                 fontWeight: 700 ,
@@ -48,6 +50,9 @@ export default function RoomExplore() {
             }}>
                 Forget Busy Work,<br/> Start Next Vacation
             </Typography>
+            </Slide>
+            <Fade in={true} timeout={1500}>
+
             <Typography variant='body2'sx={{
                     fontFamily:  "Poppins sans-serif",
                     fontWeight: 300,
@@ -58,10 +63,14 @@ export default function RoomExplore() {
                 We provide what you need to enjoy your holiday with family.
                  <br/>Time to make another memorable moments.
             </Typography>
+            </Fade>
+             <Slide direction="down" in={true} timeout={800}>
+
             <Box>
                 <Typography  variant='h5' className='section_title'>Start Booking</Typography>
                 <Box component="form" onSubmit={handleSubmit(onSubmit)} >
                    <Typography className='section_title'>Pick a Date</Typography>
+
                     <Box sx={{width:"50%",display:"flex"}}>
                          {/* <DateRangePicker minDate={dayjs()} onChange={onChange} value={value} />
                           */}
@@ -118,14 +127,16 @@ export default function RoomExplore() {
                          {/* end counter */}
                     </Box>  
 
-                    <Button type="submit" variant="contained" sx={{width:"25%",display:"inline-block"}}>Explore</Button> 
+                    <Button type="submit" variant="contained" sx={{width:"25%",display:"inline-block",marginBlock:"20px"}}>Explore</Button> 
 
 
 
                 </Box>
             </Box>
+            </Slide>
         </Grid>
-         <Grid size={{md:4, sm:12,xs:12}}>
+         <Grid size={{md:4, sm:12,xs:12}} sx={{marginTop:"20px"}}>
+
             <ImageSide imageName={roomExploreImg} xPosition="-50px" yPosition="-50px" borderShape="topLeft"/>
         </Grid>
 

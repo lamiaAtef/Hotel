@@ -158,11 +158,19 @@ p {
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   transition: .5s;
   padding: 5px;
+  overflow: hidden;
   
 }
 .card:hover{
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   transform: translateY(-5px);
+
+}
+.card img{
+  transition: .7s ease;
+}
+.card:hover img{
+  transform: scale(1.07) ;
 
 }
 .cardInExplore{
@@ -178,4 +186,5 @@ p {
 }
 .custom_width{
   width:100%;
+  display: block;
 }

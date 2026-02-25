@@ -3,11 +3,14 @@ import axios from 'axios';
 import React, { useState } from 'react'
 import { useParams, useSearchParams } from 'react-router-dom';
 import { toast } from 'react-toastify';
+import { useAuth } from '../../auth/hooks/useAuth';
 
 export default function CommentsRates() {
  const[roomDetails,setRoomDetails]=useState([]);
   const [rate, setRate] = useState(0);
   const {roomId} = useParams();
+    const { userData } = useAuth();
+  
 
   const[message,setMessage]=useState("");
   const[review,setReview]=useState("");
@@ -63,18 +66,19 @@ toast.error(error?.response?.data?.message)
     }
 
   }
-
+ if (!userData && userData?.role !== "user") return <></>
   return (
     <>
-    <Grid container spacing={2}>
-  <Grid size={{xs:12,md:6}}>
- <Box sx={{my:3}}>
+    
+    <Grid container spacing={2} >
+  <Grid size={{xs:12,md:6}} >
+ <Box sx={{marginLeft:"50px"}}>
      <Typography variant="h5" sx={{color:"rgba(21, 44, 91, 1)"}}>Rate</Typography>
     <Rating
-  value={rate}
-  precision={0.5}
-   onChange={(e)=>{
-    setRate(e.target.value)
+        value={rate}
+        precision={0.5}
+        onChange={(e)=>{
+          setRate(e.target.value)
   }}
 />
 <Typography variant="h6" sx={{color:"rgba(21, 44, 91, 1)"}}>Message</Typography>
@@ -88,9 +92,10 @@ value={review}
   }}
 
 sx={{
-  width:300,
+  width:"70%",
   display:"flex",
   justifyContent:"center",
+ 
 
   "& .MuiOutlinedInput-root": {
       borderRadius: "10px",
@@ -115,7 +120,7 @@ size="small"
  </Box>
   </Grid>
   <Grid size={{xs:12,md:6}}>
- <Box sx={{my:3,
+ <Box sx={{my:3,marginLeft:"50px"
 
  }}>
      <Typography variant="h6" sx={{color:"rgba(21, 44, 91, 1)"}}>Add your comment</Typography>
@@ -128,7 +133,7 @@ value={message}
   }}
 
 sx={{
-  width:300,
+  width:"70%",
   mt:5,
 
   "& .MuiOutlinedInput-root": {
@@ -158,8 +163,9 @@ onClick={handelSendComment}> send</Button>
  </Box>
   </Grid>
 
-</Grid>
+    </Grid>
       
     </>
+
   )
 }

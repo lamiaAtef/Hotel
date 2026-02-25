@@ -4,7 +4,7 @@ import AuthHeader from "../shared/AuthHeader";
 import { useForm } from "react-hook-form";
 import type { LoginPayload } from "../type";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import { useLogin } from "../hooks/useLogin";
 import { Visibility, VisibilityOff } from "@mui/icons-material";
 
@@ -16,8 +16,8 @@ export default function Login() {
   const [snackbarMessage, setSnackbarMessage] = useState("");
 
   const [showPassword, setShowPassword] = useState<boolean>(false);
-
-
+  const location = useLocation()
+  const from = location.state?.from?.pathname || "auth/login";
   const {
     register,
     handleSubmit,
@@ -33,7 +33,7 @@ export default function Login() {
       return;
     }
 
-    navigate(user.role === "admin" ? "/admin-dashboard" : "/home");
+    navigate(user.role === "admin" ? "/admin-dashboard" : from, { replace: true });
   };
 
   return (

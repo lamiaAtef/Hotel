@@ -1,5 +1,5 @@
 
-import { Stack } from "@mui/material"
+import { Stack, Zoom } from "@mui/material"
 import house_1 from "../../../assets/images/userLanding_house/house1.png"
 import house_2 from "../../../assets/images/userLanding_house/house2.png"
 import house_3 from "../../../assets/images/userLanding_house/house3.png"

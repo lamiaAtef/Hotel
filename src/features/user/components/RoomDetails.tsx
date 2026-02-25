@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react"
+import { useEffect, useMemo, useState } from "react"
 import { ROOM_URLS, USER_URLS, publicAxios} from "../../../config/api.endPoint";
 import type { bookingPayload, ExploreRoomFormValues, MyRoomData } from "../type";
 import { useNavigate, useParams } from "react-router-dom";
@@ -16,15 +16,20 @@ import { Controller, useForm } from "react-hook-form";
 import DateRangePicker from "@wojtekmaj/react-daterange-picker";
 import CalendarMonthIcon from '@mui/icons-material/CalendarMonth';
 import UserServices from "../services/userService";
+import altRoomImg from "../../../assets/images/altRoomImg.png"
+import { useAuth } from "../../auth/hooks/useAuth";
+import Swal from "sweetalert2";
+import { useLocation } from "react-router-dom";
 
 
 
 export default function RoomDetails() {
 
   const [roomdetails, setRoomDetails] = useState<MyRoomData | null>(null);
+      const { userData } = useAuth();
   
   const navigate = useNavigate()
-  
+  const location = useLocation();
   const {roomId} = useParams();
     const {
     control,
@@ -32,8 +37,44 @@ export default function RoomDetails() {
     formState:{errors},
     
   } = useForm<ExploreRoomFormValues>({})
+  // useMemo
+  // بعد const [roomdetails, setRoomDetails] = useState<MyRoomData | null>(null);
+const displayImages = useMemo(() => {
+  const images = roomdetails?.images || [];
+  const totalImages = images.length;
+  const result = [];
+  
+  for (let i = 0; i < 3; i++) {
+    if (i < totalImages) {
+      result.push(images[i]);
+    } else {
+      result.push(altRoomImg);
+    }
+  }
+  return result;
+}, [roomdetails]);
+  // end useMemo
   
     let onSubmit = (data:any) => {
+      if(!userData && userData?.role !== "user" ) {
+        Swal.fire({
+      title: "To continue with your booking, you need to sign up or log in to your account first.",
+      showDenyButton: true,
+      showCancelButton: true,
+      confirmButtonText: "Login",
+      denyButtonText: `Register`
+}).then((result) => {
+  if (result.isConfirmed) {
+    navigate("/auth/login" ,{ state: { from: location }})
+  } else if (result.isDenied) {
+    navigate("/auth/register",{ state: { from: location }})
+    
+  }
+})
+        
+}
+else{ 
+
        const [start, end] = data.dateRange; 
         let price = roomdetails?.price || 100;
 
@@ -59,12 +100,12 @@ export default function RoomDetails() {
     createBooking(payload);
     
   }
+}
 
   let createBooking = async(data:bookingPayload) => {
      try{
       let response = await UserServices.booking(data)
       console.log(response,"response")
-      // المفروض تقريبا ابعته للصفحه التاليه 
       navigate(`/hotel-booking?roomId=${roomId}&startDate=${data.startDate}&endDate=${data.endDate}&price=${ roomdetails?.price }&discount=${roomdetails?.discount}&totalPrice=${data.totalPrice}`,{state:{bookingId:  response.data.data.booking._id}} )
 
     }
@@ -91,29 +132,42 @@ export default function RoomDetails() {
    useEffect(()=>{
 
     getRoomDetails();
+    
 
    },[])
   return (
     <>
       <Box component="div" sx={{ marginY: 3, mx:5 }}>
         <Typography variant="h5" sx={{mb:2, fontWeight:"bold"}}> Room Details</Typography>
-        <Box
-                sx={{
-                    display: "grid",
-                    gridTemplateColumns: "2fr 1fr",
-                    gridTemplateRows: "repeat(2, 200px)",
-                    gap: 2,
-        }}>
-          {roomdetails?.images.slice(0,3).map((img,index)=>(
-            <Box key={index} component="img" src={img} alt="roomImage"
-            sx={{gridRow: index ===0 ? "span 2" : "auto", 
-            width: "100%", height:"100%", objectFit:"cover", borderRadius:2}}/>
-
-          ))}
-           </Box>
+       
+       <Box
+  sx={{
+    display: "grid",
+    gridTemplateColumns: "2fr 1fr",
+    gridTemplateRows: "repeat(2, 200px)",
+    gap: 2,
+  }}
+>
+  {displayImages.map((img, index) => (
+    <Box
+      key={index}
+      component="img"
+      src={img}
+      sx={{
+        gridRow: index === 0 ? "span 2" : "auto",
+        width: "100%",
+        height: "100%",
+        objectFit: "cover",
+        borderRadius: 2
+      }}
+    />
+  ))}
+</Box>
+         
+           
 
           <Grid container spacing={2} sx={{my:5}} >
-            <Grid size={8}>
+            <Grid size={{lg:8 , md:12}}>
             <Typography variant="body1" className="textGray">
             Minimal techno is a minimalist subgenre of techno music. 
             It is characterized by a stripped-down aesthetic that exploits
@@ -133,48 +187,41 @@ export default function RoomDetails() {
              for design: enabling Singapore to use design for economic growth and to make lives better.
             </Typography>
 
-            <Stack direction="row" spacing={12} m={4}>
-              <Stack spacing={1}>
+            <Grid container  >
+              <Grid size={{md:3,xs:6}} sx={{marginBlock:"15px"}} >
                 <Box component="img" src={imgFacility1} sx={{width:"50px",height:"50px"}} alt="facility image"/>
                 <Typography variant="body1" className="textGray">5 bedroom</Typography>
-              </Stack>
+              </Grid>
 
-              <Stack spacing={1}>
+              <Grid size={{md:3,xs:6}} sx={{marginBlock:"15px"}} >
                 <Box component="img" src={imgFacility4} sx={{width:"50px",height:"50px"}} alt="facility image"/>
                 <Typography variant="body1" className="textGray">1 living room</Typography>
-              </Stack>
+              </Grid>
 
-              <Stack spacing={1}>
+              <Grid size={{md:3,xs:6}} sx={{marginBlock:"15px"}} >
                 <Box component="img" src={imgFacility2} sx={{width:"50px",height:"50px"}}  alt="facility image"/>
                 <Typography variant="body1" className="textGray">3 bathroom</Typography>
-              </Stack>
+              </Grid>
 
-              <Stack spacing={1}>
+              <Grid size={{md:3,xs:6}} sx={{marginBlock:"15px"}} >
                 <Box component="img" src={imgFacility3} sx={{width:"50px",height:"50px"}} alt="facility image"/>
                 <Typography variant="body1" className="textGray">1 dining room</Typography>
-              </Stack>
-            </Stack>
+              </Grid>
 
-            <Stack direction="row" spacing={12} m={4}>
-
-              <Stack spacing={1}>
+              <Grid size={{md:3,xs:6}} sx={{marginBlock:"15px"}}>
                 <Box component="img" src={imgFacility5} sx={{width:"50px",height:"50px"}} alt="facility image"/>
                 <Typography variant="body1" className="textGray">10 mbp/s</Typography>
-              </Stack>
+              </Grid>
 
-              <Stack spacing={1}>
+              <Grid size={{md:3,xs:6}} sx={{marginBlock:"15px"}}>
                 <Box component="img" src={imgFacility6} sx={{width:"50px",height:"50px"}} alt="facility image"/>
                 <Typography variant="body1" className="textGray">7 unit ready</Typography>
-              </Stack>
-
-             
-
+              </Grid>
               
-              
-            </Stack>
             </Grid>
-
-            <Grid size={4} sx={{border:"1px solid #ccc",padding:"30px",borderRadius:"15px"}}>
+            </Grid>
+            {/* end images and start booking */}
+            <Grid size={{lg:4 ,md:12}} sx={{border:"1px solid #ccc",padding:"30px",borderRadius:"15px"}}>
               <Typography variant="h5">
                 Start Booking
               </Typography>
@@ -207,21 +254,23 @@ export default function RoomDetails() {
                           value={field.value}
                           className="custom_width"
                           
+                          
                       />
                       )}
                     />
+                    </Box>
                     {errors.dateRange && (
-                      <Typography color="error" variant="body2">
+                      <Typography color="error" variant="body2" >
                         {errors.dateRange.message}
                       </Typography>
                     )}
-                  </Box>
+                  
                 {/* end date controller */}
 
                     
                    
 
-                    <Button type="submit" variant="contained" sx={{width:"50%",display:"inline-block",marginBlock:"20px"}}>Continue Book</Button> 
+                    <Button type="submit" variant="contained" sx={{width:"80%",display:"inline-block",marginBlock:"20px"}}>Continue Book</Button> 
 
 
 

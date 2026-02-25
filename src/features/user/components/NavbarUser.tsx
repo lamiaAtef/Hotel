@@ -34,9 +34,9 @@ const isLoggedIn = token !== null && token !== ""; // true لو فيه توكن 
 const pages = isLoggedIn
   ? [
       { label: 'Home', path: '/' },
-      { label: 'Explore', path: '/explore' },
+      { label: 'Explore', path: '/explore-room' },
       { label: 'Reviews', path: '/reviews' },
-      { label: 'Favourites', path: '/favourites' },
+      { label: 'Favourites', path: '/favorites' },
     ]
   : [
       { label: 'Home', path: '/' },
@@ -86,7 +86,7 @@ const [anchorElUser, setAnchorElUser] = React.useState<null | HTMLElement>(null)
             variant="h6"
             noWrap
             component="a"
-            href="#app-bar-with-responsive-menu"
+            href="/"
             sx={{
               mr: 2,
               display: { xs: 'none', md: 'flex' },

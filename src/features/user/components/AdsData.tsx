@@ -9,6 +9,7 @@ import {  type MyAdsPayload } from "../type";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../auth/context/AuthContext";
 import { axiosInstance } from "../../../services/httpClient";
+import altImage from "../../../assets/images/altRoomImg.png"
 
 export default function AdsData() {
 const authContext = useContext(AuthContext);
@@ -105,7 +106,7 @@ const addToFavorite = async (roomId:string) => {
                     "&:hover": { 
                         color: "rgba(255, 255, 255, 0.6)", 
                         transform: "scale(1.2)", 
-                        backgroundColor: "transparent" 
+                        
                     } 
                 }}>
                 
@@ -148,7 +149,7 @@ const addToFavorite = async (roomId:string) => {
                     <Box sx={{ position: "relative", gridRow: "span 2" }}>
                         <Box
                             component="img"
-                            src={adsList[0].room.images[0]}
+                            src={adsList[0].room.images[0]||altImage}
                             alt="room"
                             sx={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: 2 }}
                         />
@@ -160,7 +161,7 @@ const addToFavorite = async (roomId:string) => {
                     <Box key={index} sx={{ position: "relative" }}>
                         <Box
                             component="img"
-                            src={ad.room.images[0]}
+                            src={ad.room.images[0]||altImage}
                             alt="room"
                             sx={{ width: "100%", height: "100%", objectFit: "cover", borderRadius: 2 }}
                         />

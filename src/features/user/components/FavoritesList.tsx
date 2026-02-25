@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Grid from "@mui/material/Grid";
+import altImage from "../../../assets/images/altRoomImg.png"
 
 import {
   Box,
@@ -17,7 +18,7 @@ import { FAV_URLS } from "../../../config/api.endPoint";
 const IMAGE_BASE_URL = "http://localhost:5000/";
 
 const getImageSrc = (img?: string) => {
-  if (!img) return "/no-image.png";
+  if (!img) return altImage ;
   return img.startsWith("http") ? img : `${IMAGE_BASE_URL}${img}`;
 };
 
@@ -104,7 +105,7 @@ const removeFavorite = async (roomId: string) => {
                  
                   <Box
                     component="img"
-                    src={getImageSrc(room.images?.[0])}
+                    src={getImageSrc(room?.images?.[0] || altImage)}
                     alt="room-img"
                     sx={{
                       width: "100%",
